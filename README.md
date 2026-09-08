@@ -22,6 +22,7 @@ npm run dev        # http://localhost:8080/
 | `npm run dev` | Eleventy mit Live-Reload auf Port 8080 |
 | `npm run build` | Baut nach `_site/` |
 | `npm run clean` | Löscht `_site/` |
+| `npm run test:oauth` | Testet die OAuth-Functions (ohne Netz, ohne Vercel) |
 | `npm run audit` | Externe Requests · axe AA · Überlauf · Touch-Targets (Dev-Server muss laufen) |
 | `npm run shoot:all` | Screenshots bei 375 / 768 / 1024 / 1440 px |
 
@@ -110,20 +111,43 @@ nicht. In Brave zusätzlich `brave://flags/#file-system-access-api` aktivieren.
 
 ### Damit Julia aus dem Netz arbeiten kann
 
-Sveltia hat **kein eigenes Benutzersystem** — kein Admin-User, kein Passwort.
-Die Anmeldung ist GitHub. Julias Berechtigung kommt allein daraus, dass sie
-Collaborator mit Schreibrecht auf diesem Repo ist.
+Sveltia hat **kein eigenes Benutzersystem** — keinen Admin-User, kein Passwort,
+keine Nutzerverwaltung. Die Anmeldung *ist* GitHub. Julias Berechtigung kommt
+allein daraus, dass sie Collaborator mit Schreibrecht auf diesem Repo ist.
 
-Nötig sind drei Dinge:
+Der Server-Teil liegt in `api/` und läuft als Vercel Function im selben
+Projekt — kein Cloudflare, kein zweiter Dienst. Er existiert nur, weil das CMS
+im Browser läuft und das OAuth Client Secret nicht halten darf; der Tausch von
+Authorization Code gegen Access Token muss serverseitig passieren.
 
-1. Julia hat einen **GitHub-Account** und nimmt die Repo-Einladung an (Write)
-2. Eine **GitHub OAuth App**, Callback-URL `https://<domain>/callback`
-3. `base_url: https://<domain>` in `admin/config.yml`, plus die Vercel
-   Functions unter `/auth` und `/callback`, die den Token-Tausch übernehmen
-   (Client Secret darf nicht in den Browser)
+| Datei | Rolle |
+|---|---|
+| `api/auth.js` | `/auth` → leitet zu GitHub, setzt den CSRF-Cookie |
+| `api/callback.js` | `/callback` → tauscht Code gegen Token, gibt ihn per `postMessage` zurück |
+| `api/_oauth.js` | gemeinsame Helfer (Scope, Domain-Whitelist, Antwort-HTML) |
 
-Danach: `<domain>/admin/` → „Mit GitHub anmelden" → schreiben → Veröffentlichen
-→ Commit auf `main` → Vercel baut → in etwa einer Minute live.
+Portiert aus [`sveltia/sveltia-cms-auth`](https://github.com/sveltia/sveltia-cms-auth)
+(MIT), das dort als Cloudflare Worker ausgeliefert wird. Die Logik nutzt nur
+Web-Standard-APIs und läuft deshalb unverändert auf Vercel.
+
+**Einrichtung — einmalig:**
+
+1. **GitHub OAuth App** anlegen (Settings → Developer settings → OAuth Apps):
+   - Homepage URL: `https://impactalyst.vercel.app`
+   - Authorization callback URL: `https://impactalyst.vercel.app/callback`
+2. **Environment Variables in Vercel** setzen (Production):
+   - `GITHUB_CLIENT_ID`
+   - `GITHUB_CLIENT_SECRET` (als Secret markieren)
+   - `ALLOWED_DOMAINS` = `impactalyst.vercel.app` — ohne diese Variable fällt
+     der Code auf die Vercel-Produktionsdomain zurück; ein leerer Wert würde
+     jede Domain zulassen
+3. **Julia einladen:** Repo → Settings → Collaborators → **Write**
+
+Danach: `/admin/` → „Mit GitHub anmelden" → schreiben → Veröffentlichen →
+Commit auf `main` → Vercel baut → in etwa einer Minute live.
+
+`npm run test:oauth` prüft die Kette lokal: Weiterleitung, CSRF-Schutz,
+Domain-Whitelist, Token-Tausch und dass das Secret den Server nie verlässt.
 
 ---
 

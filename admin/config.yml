@@ -26,13 +26,13 @@
 # als Vercel Function unter /auth und /callback im selben Projekt). Zusätzlich
 # nötig: GitHub OAuth App und Julia als Collaborator mit Schreibrecht.
 #
-#   base_url: https://<deine-domain>
+#   base_url ist unten bereits gesetzt.
 
 backend:
   name: github
   repo: powerpeejay/impactalyst
   branch: main
-  # base_url: https://impactalyst.vercel.app   # setzen, sobald die OAuth-App steht
+  base_url: https://impactalyst.vercel.app
 
 # --- Medien ----------------------------------------------------------------
 media_folder: "assets/img/uploads"

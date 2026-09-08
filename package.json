@@ -8,6 +8,7 @@
     "build": "eleventy",
     "clean": "node -e \"require('node:fs').rmSync('_site',{recursive:true,force:true})\"",
     "audit": "node audit.mjs",
+    "test:oauth": "node oauth.test.mjs",
     "shoot": "node screenshot.mjs",
     "shoot:all": "node screenshot.mjs --viewport=all",
     "shoot:mobile": "node screenshot.mjs --viewport=mobile",
