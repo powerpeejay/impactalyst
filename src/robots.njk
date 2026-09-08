@@ -1,0 +1,11 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+User-agent: *
+Allow: /
+
+# Redaktionsoberfläche — kein Inhalt für Suchmaschinen.
+Disallow: {{ '/admin/' | url }}
+
+Sitemap: {{ site.origin }}{{ '/sitemap.xml' | url }}

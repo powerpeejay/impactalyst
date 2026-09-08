@@ -1,0 +1,14 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ site.name | dump | safe }},
+  "description": "Branchenübergreifendes, offenes Leadership-Netzwerk für Führungskräfte, die echte Verantwortung tragen.",
+  "url": {{ (site.origin + ("/" | url)) | dump | safe }},
+  "logo": {{ (site.origin + (site.ogImage | url)) | dump | safe }},
+  "areaServed": "Hamburg, DACH",
+  "address": { "@type": "PostalAddress", "addressLocality": {{ site.city | dump | safe }}, "addressCountry": "DE" },
+  "email": {{ site.email | dump | safe }},
+  "sameAs": [{{ site.instagram | dump | safe }}]
+}
+</script>

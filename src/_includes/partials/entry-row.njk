@@ -1,0 +1,24 @@
+{#
+  Eine Listenzeile. Bewusst KEINE Karte: DESIGN.md §4 sagt "Karten sind nicht das
+  Leitmotiv dieser Direction", und das 3-Spalten-Kartenraster steht auf der
+  Anti-Slop-Liste (CLAUDE.md §7). Volle Breite, Haarlinie, Gold nur im Pfeil.
+
+  Erwartet: entry (Collection-Item), optional kicker (String statt Datum).
+#}
+<li class="entry">
+  <a class="entry__link" href="{{ entry.url }}">
+    <span class="entry__meta">
+      {%- if kicker -%}{{ kicker }}
+      {%- else -%}<time datetime="{{ entry.data.date | isoDate }}">{{ entry.data.date | dateShort }}</time>{%- endif -%}
+    </span>
+    <span class="entry__body">
+      <span class="entry__title">{{ entry.data.title }}</span>
+      {% if entry.data.teaser %}<span class="entry__teaser">{{ entry.data.teaser }}</span>{% endif %}
+    </span>
+    <span class="entry__arrow" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </span>
+  </a>
+</li>

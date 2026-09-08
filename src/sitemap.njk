@@ -1,0 +1,17 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{#- Einträge ohne eigene URL (Team, Ressourcen — permalink:false) und
+    noindex-Seiten (Rechtstexte) gehören nicht in die Sitemap. -#}
+{%- for seite in collections.all %}
+{%- if seite.url and seite.data.noindex != true %}
+  <url>
+    <loc>{{ site.origin }}{{ seite.url | url }}</loc>
+    <lastmod>{{ seite.date | isoDate }}</lastmod>
+  </url>
+{%- endif %}
+{%- endfor %}
+</urlset>

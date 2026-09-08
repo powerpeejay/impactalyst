@@ -1,0 +1,29 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": {{ title | dump | safe }},
+  {% if teaser %}"description": {{ teaser | dump | safe }},{% endif %}
+  "startDate": {{ (date | isoDate) | dump | safe }},
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "inLanguage": "de-DE",
+  "url": {{ (site.origin + (page.url | url)) | dump | safe }},
+  "image": {{ (site.origin + (site.ogImage | url)) | dump | safe }},
+  "location": {
+    "@type": "Place",
+    "name": {{ (ort | default("Hamburg")) | dump | safe }},
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": {{ site.city | dump | safe }},
+      "addressCountry": "DE"
+    }
+  },
+  "organizer": {
+    "@type": "Organization",
+    "name": {{ site.name | dump | safe }},
+    "url": {{ (site.origin + ("/" | url)) | dump | safe }}
+  },
+  "isAccessibleForFree": true
+}
+</script>

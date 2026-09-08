@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redaktion — Impactalyst</title>
+  <!-- Redaktionsoberfläche: nie indexieren. -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <!--
+    Sveltia CMS, selbst gehostet aus node_modules/@sveltia/cms/dist/ statt via
+    unpkg — das Bundle selbst kommt damit vom eigenen Server.
+
+    ACHTUNG, geprüft und dokumentiert: Sveltia lädt zur LAUFZEIT trotzdem von
+    fremden Servern (unpkg für Versionsprüfung und Locale, jsdelivr für seine
+    eigenen Fonts, githubstatus.com für den Backend-Status). Selbst-Hosting
+    des Bundles beseitigt das nicht.
+
+    Das ist vertretbar, weil /admin/ ausschließlich die Redaktion aufruft und
+    keine Besucherseite ist. Alle 11 öffentlichen Seiten sind nachweislich frei
+    von externen Requests. Siehe EXTERNAL_ASSETS.md, Abschnitt "Redaktion".
+
+    Aktualisieren: npm update @sveltia/cms — der Build kopiert die neue Datei.
+  -->
+  <script src="sveltia-cms.js"></script>
+</body>
+</html>

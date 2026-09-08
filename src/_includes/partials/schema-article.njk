@@ -1,0 +1,21 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ title | dump | safe }},
+  {% if teaser %}"description": {{ teaser | dump | safe }},{% endif %}
+  "datePublished": {{ (date | isoDate) | dump | safe }},
+  "inLanguage": "de-DE",
+  "mainEntityOfPage": {{ (site.origin + (page.url | url)) | dump | safe }},
+  "image": {{ (site.origin + (site.ogImage | url)) | dump | safe }},
+  {% if autor %}"author": { "@type": "Person", "name": {{ autor | dump | safe }} },{% endif %}
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.name | dump | safe }},
+    "logo": {
+      "@type": "ImageObject",
+      "url": {{ (site.origin + (site.ogImage | url)) | dump | safe }}
+    }
+  }
+}
+</script>

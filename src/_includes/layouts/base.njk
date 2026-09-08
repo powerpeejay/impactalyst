@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  <script>document.documentElement.classList.add('js');</script>
+  {% include "partials/seo.njk" %}
+  {% if schema %}{% include "partials/schema-" + schema + ".njk" %}{% endif %}
+</head>
+<body>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+
+  {% include "partials/header.njk" %}
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

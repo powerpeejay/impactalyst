@@ -1,0 +1,36 @@
+.DS_Store
+node_modules/
+.cache/
+.parcel-cache/
+screenshots/
+*.log
+.env
+.env.local
+.vercel
+
+# Eleventy build output — Vercel baut selbst aus der Quelle
+_site/
+.eleventy-cache/
+
+# ---------------------------------------------------------------------------
+# Nicht ins öffentliche Repo
+# ---------------------------------------------------------------------------
+
+# Jacob-Digital-Playbook: Direction-Matrix, Anti-Slop-Regeln, Phasen-Workflow.
+# Das ist Peters Arbeitsweise über alle Kunden hinweg — kein Kundenmaterial und
+# nichts, was auf GitHub öffentlich stehen sollte.
+CLAUDE.md
+INSPIRATION.md
+DESIGN.md.template
+
+# Kundeninterne Arbeitsunterlagen: Briefing mit Positionierung und Zielgruppen-
+# abgrenzung, Rohnotizen aus dem Discovery, verworfene Design-Richtungen,
+# Original-Markenassets. Gehört ins Projekt, nicht in die Öffentlichkeit.
+INTAKE.md
+reference/
+directions/
+brand_assets/
+
+# Erfundene Demo-Inhalte zum Vorführen. Dürfen nie in einen Build geraten und
+# haben in der Historie der echten Seite nichts verloren.
+_fixtures/

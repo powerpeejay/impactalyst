@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+headerSolid: true
+title: "Ressourcen-Bibliothek"
+eyebrow: "Impulse & Methoden"
+headline: "Ressourcen-Bibliothek"
+lead: "Methoden, Bücher und Werkzeuge, die im Netzwerk wirklich benutzt werden — nicht die, die sich gut zitieren lassen."
+description: "Die Ressourcen-Bibliothek des Impactalyst-Netzwerks: Methoden und Werkzeuge für ehrliche Führungsarbeit."
+pagination:
+  data: collections.ressourcen
+  size: 1000
+  alias: alleRessourcen
+permalink: "/impulse/ressourcen/"
+---
+{% include "partials/page-head.njk" %}
+<section class="section list-section">
+  <div class="container">
+    <a class="btn btn--ghost back-link" href="/impulse/">← Impulse &amp; Methoden</a>
+    {% set ressourcen = collections.ressourcen %}
+    {% include "partials/resource-list.njk" %}
+  </div>
+</section>
+{% include "partials/join-band.njk" %}

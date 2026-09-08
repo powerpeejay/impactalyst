@@ -1,0 +1,12 @@
+{#
+  Kopf einer Unterseite. Bewusst kein zweiter Hero: kleinere Typo-Stufe als H1
+  der Startseite, kein Glow, kein Wasserzeichen — der große Auftritt bleibt der
+  Startseite vorbehalten (DESIGN.md §5, "wenige, große Gesten").
+#}
+<section class="page-head">
+  <div class="container">
+    {% if eyebrow %}<span class="eyebrow">{{ eyebrow }}</span>{% endif %}
+    <h1>{{ headline | default(title) }}</h1>
+    {% if lead %}<p class="page-head__lead">{{ lead }}</p>{% endif %}
+  </div>
+</section>

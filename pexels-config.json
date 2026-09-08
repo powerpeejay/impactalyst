@@ -1,0 +1,9 @@
+{
+  "_comment": "Phase 3: fülle 'queries' mit direction-spezifischen Suchen aus INSPIRATION.md §6 (Pexels Query Starters per Direction Matrix). Dann 'node fetch-photos.mjs'. Felder pro Query: name (slug für Filename), query (Pexels-Suchstring), per_page (1-80), orientation (landscape|portrait|square), locale (z.B. de-DE).",
+  "_example": [
+    { "name": "hero",          "query": "modern bathroom interior detail", "per_page": 3, "orientation": "portrait" },
+    { "name": "showroom",      "query": "tile work craft hands",            "per_page": 4, "orientation": "landscape" },
+    { "name": "vorher-nachher","query": "bathroom renovation home",         "per_page": 6, "orientation": "landscape" }
+  ],
+  "queries": []
+}

@@ -1,0 +1,13 @@
+{# Erwartet: ressourcen (Array von Collection-Items). #}
+<ul class="resource-list">
+  {% for res in ressourcen %}
+  <li class="resource">
+    <a class="resource__link" href="{{ res.data.url | default('#') }}" target="_blank" rel="noopener">
+      <span class="resource__type">{{ res.data.typ | default("Ressource") }}</span>
+      <span class="resource__title">{{ res.data.title }}</span>
+      {% if res.data.teaser %}<span class="resource__teaser">{{ res.data.teaser }}</span>{% endif %}
+      {% if res.data.quelle %}<span class="resource__source">{{ res.data.quelle }}</span>{% endif %}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

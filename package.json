@@ -1,0 +1,28 @@
+{
+  "name": "impactalyst-site",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "eleventy --serve --port=8080",
+    "build": "eleventy",
+    "clean": "node -e \"require('node:fs').rmSync('_site',{recursive:true,force:true})\"",
+    "audit": "node audit.mjs",
+    "shoot": "node screenshot.mjs",
+    "shoot:all": "node screenshot.mjs --viewport=all",
+    "shoot:mobile": "node screenshot.mjs --viewport=mobile",
+    "shoot:full": "node screenshot.mjs --full-page",
+    "shoot:rm": "node screenshot.mjs --reduced-motion",
+    "fetch:photos": "node fetch-photos.mjs",
+    "fetch:photos:dry": "node fetch-photos.mjs --dry-run",
+    "favicon": "node generate-favicon.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-navigation": "^1.0.5",
+    "@axe-core/playwright": "^4.11.2",
+    "@sveltia/cms": "^0.208.2",
+    "playwright": "^1.59.1",
+    "pngjs": "^7.0.0"
+  }
+}

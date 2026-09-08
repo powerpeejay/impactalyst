@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+headerSolid: true
+---
+{% include "partials/page-head.njk" %}
+
+{% if content %}
+<section class="section prose-section">
+  <div class="container">
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{#
+  Werte-Block: der EINE helle Invert-Block dieser Seite (DESIGN.md §5 —
+  die Regel gilt pro Seite, nicht pro Site).
+#}
+{% if values %}
+<section class="section invert" id="{{ valuesId | default('haltung') }}">
+  <div class="container">
+    {% if valuesEyebrow %}<span class="eyebrow">{{ valuesEyebrow }}</span>{% endif %}
+    {% if valuesTitle %}<h2>{{ valuesTitle }}</h2>{% endif %}
+    <ul class="values">
+      {% for v in values %}
+      <li>
+        <span class="values__num">{{ "0" + loop.index if loop.index < 10 else loop.index }}</span>
+        <h3 class="values__title">{{ v.titel }}</h3>
+        <p class="values__desc">{{ v.text }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% if showTeam and collections.teamMitglieder.length %}
+<section class="section team" id="team">
+  <div class="container">
+    <span class="eyebrow">Menschen</span>
+    <h2 class="section__title">Wer hinter Impactalyst steht.</h2>
+    <ul class="team__list">
+      {% for person in collections.teamMitglieder %}
+      <li class="team__item">
+        {% if person.data.foto %}
+        <img class="team__photo" src="{{ person.data.foto }}" width="480" height="480"
+             loading="lazy" decoding="async" alt="{{ person.data.name }}, {{ person.data.rolle }}">
+        {% endif %}
+        <div class="team__body">
+          <h3 class="team__name">{{ person.data.name }}</h3>
+          <p class="team__role">{{ person.data.rolle }}</p>
+          {% if person.templateContent %}<div class="team__bio">{{ person.templateContent | safe }}</div>{% endif %}
+          {% if person.data.linkedin %}
+          <a class="team__link" href="{{ person.data.linkedin }}" target="_blank" rel="noopener">LinkedIn →</a>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% if joinBand != false %}{% include "partials/join-band.njk" %}{% endif %}

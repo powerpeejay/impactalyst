@@ -1,0 +1,74 @@
+---
+layout: layouts/base.njk
+headerSolid: true
+title: "Impulse & Methoden"
+eyebrow: "Impulse & Methoden"
+headline: "Was wir gelernt haben, bleibt nicht im Raum."
+lead: "Fachartikel, Methoden und Rückblicke aus dem Netzwerk — damit auch etwas mitnimmt, wer beim Meetup nicht dabei war."
+description: "Fachartikel, Ressourcen-Bibliothek und Event-Recaps aus dem Impactalyst-Netzwerk. Führungswissen ohne Business-Theater."
+ogTitle: "Impactalyst — Impulse & Methoden"
+pagination:
+  data: collections.impulseVorhanden
+  size: 1000
+  alias: hatImpulse
+permalink: "/impulse/"
+---
+{% include "partials/page-head.njk" %}
+
+{% if collections.fachartikel.length %}
+<section class="section list-section" id="artikel">
+  <div class="container">
+    <div class="list-section__head">
+      <div>
+        <span class="eyebrow">Fachartikel</span>
+        <h2 class="section__title">Gedanken, ausgeschrieben</h2>
+      </div>
+      {% if collections.fachartikel.length > 4 %}
+      <a class="btn btn--ghost" href="/impulse/artikel/">→ alle {{ collections.fachartikel.length }} Artikel</a>
+      {% endif %}
+    </div>
+    <ul class="entry-list">
+      {% for entry in collections.fachartikel.slice(0, 4) %}{% include "partials/entry-row.njk" %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% if collections.ressourcen.length %}
+<section class="section list-section list-section--muted" id="ressourcen">
+  <div class="container">
+    <div class="list-section__head">
+      <div>
+        <span class="eyebrow">Ressourcen-Bibliothek</span>
+        <h2 class="section__title">Werkzeug, das wir selbst benutzen</h2>
+      </div>
+      {% if collections.ressourcen.length > 6 %}
+      <a class="btn btn--ghost" href="/impulse/ressourcen/">→ ganze Bibliothek</a>
+      {% endif %}
+    </div>
+    {% set ressourcen = collections.ressourcen.slice(0, 6) %}
+    {% include "partials/resource-list.njk" %}
+  </div>
+</section>
+{% endif %}
+
+{% if collections.eventRecaps.length %}
+<section class="section list-section" id="recaps">
+  <div class="container">
+    <div class="list-section__head">
+      <div>
+        <span class="eyebrow">Event-Recaps</span>
+        <h2 class="section__title">Was beim letzten Mal passiert ist</h2>
+      </div>
+      {% if collections.eventRecaps.length > 4 %}
+      <a class="btn btn--ghost" href="/impulse/recaps/">→ alle Recaps</a>
+      {% endif %}
+    </div>
+    <ul class="entry-list">
+      {% for entry in collections.eventRecaps.slice(0, 4) %}{% include "partials/entry-row.njk" %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% include "partials/join-band.njk" %}

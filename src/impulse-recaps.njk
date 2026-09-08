@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+headerSolid: true
+title: "Event-Recaps"
+eyebrow: "Impulse & Methoden"
+headline: "Event-Recaps"
+lead: "Was in den Meetups passiert ist — für alle, die nicht dabei waren."
+description: "Rückblicke auf die Meetups des Impactalyst-Netzwerks in Hamburg."
+pagination:
+  data: collections.eventRecaps
+  size: 1000
+  alias: alleRecaps
+permalink: "/impulse/recaps/"
+---
+{% include "partials/page-head.njk" %}
+<section class="section list-section">
+  <div class="container">
+    <a class="btn btn--ghost back-link" href="/impulse/">← Impulse &amp; Methoden</a>
+    <ul class="entry-list">
+      {% for entry in collections.eventRecaps %}{% include "partials/entry-row.njk" %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{% include "partials/join-band.njk" %}

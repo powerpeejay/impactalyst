@@ -1,0 +1,212 @@
+# Sveltia CMS — Redaktionskonfiguration für Impactalyst
+#
+# Diese Datei ist zugleich Formular-Definition UND Dokumentation des
+# Frontmatter-Vertrags aus src/content/README.md. Feldnamen hier ändern
+# heißt: Templates in src/_includes/ mitziehen.
+
+# --- Backend ---------------------------------------------------------------
+# Lokal arbeiten: Sveltia öffnet den Projektordner direkt über die File System
+# Access API. KEIN Proxy-Server nötig — Sveltia unterstützt decap-server /
+# netlify-cms-proxy-server bewusst nicht. Kein OAuth, kein Cloudflare.
+#
+#   Terminal:  npm run dev
+#   Browser:   http://localhost:8080/admin/
+#              → "Mit lokalem Repository arbeiten" → Projektordner wählen
+#
+# Nur Chromium-Browser (Chrome, Edge, Brave). Firefox und Safari können die
+# File System Access API nicht. In Brave zusätzlich
+# brave://flags/#file-system-access-api aktivieren.
+#
+# Der backend-Block unten MUSS gesetzt sein, auch für den lokalen Modus — er
+# wird lokal aber nicht kontaktiert. (Ein `local_backend`-Schalter wäre
+# wirkungslos: Sveltia ignoriert die Option.)
+#
+# Umstieg auf das echte GitHub-Backend, damit Julia ohne Peters Rechner
+# arbeiten kann: base_url auf die eigene Domain setzen (der Auth-Endpunkt läuft
+# als Vercel Function unter /auth und /callback im selben Projekt). Zusätzlich
+# nötig: GitHub OAuth App und Julia als Collaborator mit Schreibrecht.
+#
+#   base_url: https://<deine-domain>
+
+backend:
+  name: github
+  repo: powerpeejay/impactalyst
+  branch: main
+  # base_url: https://impactalyst.vercel.app   # setzen, sobald die OAuth-App steht
+
+# --- Medien ----------------------------------------------------------------
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+publish_mode: simple
+locale: de
+
+collections:
+  # ---- Events & Meetups ---------------------------------------------------
+  - name: events
+    label: "Events & Meetups"
+    label_singular: "Meetup"
+    folder: "src/content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{date}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { name: title, label: "Titel", widget: string }
+      - name: date
+        label: "Datum"
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD.MM.YYYY"
+        time_format: false
+        picker_utc: true
+      - { name: zeit, label: "Uhrzeit", widget: string, required: false, hint: "z. B. 18:30 – 21:00 Uhr" }
+      - { name: ort, label: "Ort", widget: string, required: false, hint: "z. B. Hamburg, Speicherstadt" }
+      - { name: teaser, label: "Teaser", widget: text, required: false, hint: "Ein Satz für die Listenansicht." }
+      - name: anmeldung_offen
+        label: "Anmeldung offen"
+        widget: boolean
+        default: true
+        hint: "Aus = ruhiger Hinweis statt Formular. Keine Platzzahlen — das Netzwerk arbeitet ohne künstliche Verknappung."
+      - { name: recap_slug, label: "Recap-Slug", widget: string, required: false, hint: "Dateiname des Recaps ohne .md, falls es schon einen gibt." }
+      - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
+      - { name: body, label: "Beschreibung", widget: markdown, required: false }
+
+  # ---- Fachartikel --------------------------------------------------------
+  - name: articles
+    label: "Fachartikel"
+    label_singular: "Fachartikel"
+    folder: "src/content/articles"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{date}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { name: title, label: "Titel", widget: string }
+      - name: date
+        label: "Datum"
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD.MM.YYYY"
+        time_format: false
+        picker_utc: true
+      - { name: teaser, label: "Teaser", widget: text, hint: "Ein bis zwei Sätze. Erscheint in Listen und als Vorschautext." }
+      - { name: autor, label: "Autor:in", widget: string, required: false }
+      - name: themen
+        label: "Themen"
+        widget: list
+        required: false
+        hint: "Schlagworte. Absichtlich nicht 'tags' genannt — dieses Feld gehört Eleventy."
+      - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
+      - { name: body, label: "Text", widget: markdown }
+
+  # ---- Event-Recaps -------------------------------------------------------
+  - name: recaps
+    label: "Event-Recaps"
+    label_singular: "Recap"
+    folder: "src/content/recaps"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{date}} — {{title}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { name: title, label: "Titel", widget: string }
+      - name: date
+        label: "Datum"
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "DD.MM.YYYY"
+        time_format: false
+        picker_utc: true
+      - { name: teaser, label: "Teaser", widget: text }
+      - { name: autor, label: "Autor:in", widget: string, required: false }
+      - { name: themen, label: "Themen", widget: list, required: false }
+      - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
+      - { name: body, label: "Text", widget: markdown }
+
+  # ---- Ressourcen-Bibliothek ----------------------------------------------
+  - name: resources
+    label: "Ressourcen-Bibliothek"
+    label_singular: "Ressource"
+    folder: "src/content/resources"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{typ}} — {{title}}"
+    sortable_fields: ["title", "typ"]
+    fields:
+      - { name: title, label: "Titel", widget: string }
+      - name: typ
+        label: "Art"
+        widget: select
+        options: ["Methode", "Buch", "Vorlage", "Artikel", "Podcast", "Werkzeug"]
+        default: "Methode"
+      - { name: teaser, label: "Kurzbeschreibung", widget: text }
+      - { name: url, label: "Link", widget: string, required: false, hint: "Vollständige URL inklusive https://" }
+      - { name: quelle, label: "Quelle", widget: string, required: false, hint: "Autor:in und Jahr — oder Impactalyst." }
+      - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
+      - { name: body, label: "Notiz", widget: markdown, required: false }
+
+  # ---- Netzwerk & Team ----------------------------------------------------
+  - name: team
+    label: "Netzwerk & Team"
+    label_singular: "Person"
+    folder: "src/content/team"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{reihenfolge}} — {{name}}"
+    sortable_fields: ["reihenfolge", "name"]
+    fields:
+      - { name: name, label: "Name", widget: string }
+      - name: title
+        label: "Titel (intern)"
+        widget: string
+        hint: "Wird nicht angezeigt, aber vom Build gebraucht. Einfach den Namen eintragen."
+      - { name: rolle, label: "Rolle", widget: string }
+      - { name: foto, label: "Foto", widget: image, required: false }
+      - { name: linkedin, label: "LinkedIn-Profil", widget: string, required: false }
+      - name: reihenfolge
+        label: "Reihenfolge"
+        widget: number
+        default: 10
+        value_type: int
+        hint: "Kleinere Zahl steht weiter oben."
+      - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
+      - { name: body, label: "Kurzbiografie", widget: markdown, required: false }
+
+  # ---- Feste Seiten -------------------------------------------------------
+  - name: pages
+    label: "Feste Seiten"
+    editor:
+      preview: false
+    files:
+      - name: vision
+        label: "Vision & Manifest"
+        file: "src/content/pages/vision.md"
+        fields:
+          - { name: title, label: "Seitentitel", widget: string }
+          - { name: eyebrow, label: "Eyebrow", widget: string }
+          - { name: headline, label: "Überschrift", widget: string }
+          - { name: lead, label: "Vorspann", widget: text }
+          - { name: description, label: "Meta-Description (SEO)", widget: text }
+          - { name: valuesEyebrow, label: "Werte — Eyebrow", widget: string }
+          - { name: valuesTitle, label: "Werte — Überschrift", widget: string }
+          - name: values
+            label: "Werte"
+            widget: list
+            fields:
+              - { name: titel, label: "Titel", widget: string }
+              - { name: text, label: "Text", widget: text }
+          - { name: body, label: "Fließtext", widget: markdown }
+
+      - name: netzwerk
+        label: "Netzwerk & Team"
+        file: "src/content/pages/netzwerk.md"
+        fields:
+          - { name: title, label: "Seitentitel", widget: string }
+          - { name: eyebrow, label: "Eyebrow", widget: string }
+          - { name: headline, label: "Überschrift", widget: string }
+          - { name: lead, label: "Vorspann", widget: text }
+          - { name: description, label: "Meta-Description (SEO)", widget: text }
+          - { name: joinBandTitle, label: "Beitritts-Band — Überschrift", widget: string }
+          - { name: joinBandText, label: "Beitritts-Band — Text", widget: text }
+          - { name: body, label: "Fließtext", widget: markdown }

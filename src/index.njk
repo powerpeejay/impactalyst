@@ -1,0 +1,136 @@
+---
+layout: layouts/base.njk
+titleFull: "Impactalyst — Leadership-Netzwerk Hamburg. Führung ohne Theater."
+title: "Führung ohne Theater"
+description: "Impactalyst ist ein branchenübergreifendes, offenes Netzwerk für Führungskräfte in Hamburg, die das Business-Ego ablegen und Führungskultur radikal ehrlich gestalten. Ohne künstliche Verknappung."
+ogTitle: "Impactalyst — Führung ohne Theater."
+ogDescription: "Ein offenes Leadership-Netzwerk aus Hamburg. Business-Ego ablegen, Führungskultur radikal ehrlich gestalten."
+schema: organization
+---
+{% import "partials/marks.njk" as marks %}
+
+<!-- ============ Hero ============ -->
+<section class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  {{ marks.icon("hero__watermark", 3.4) }}
+  <div class="container hero__inner">
+    <span class="eyebrow">Führungskultur · radikal ehrlich</span>
+    <h1><span class="strike">Ego</span> <span class="light">ablegen.</span></h1>
+    <p class="hero__lead">Schluss mit dem Business-Theater. Impactalyst ist ein offenes Netzwerk für Leader in Hamburg, die echte Verantwortung tragen — und Kultur gemeinsam verändern wollen.</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary" href="#beitreten">Teil des Netzwerks werden</a>
+      <a class="btn btn--ghost" href="#manifest">→ was uns antreibt</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Manifest ============ -->
+<section class="section manifest reveal" id="manifest">
+  <div class="container">
+    <span class="eyebrow">Das Manifest</span>
+    <div class="manifest__grid" style="margin-top:2rem">
+      <p class="manifest__lead">Mit welchem Leader teilst du deine größten strategischen Zweifel, wenn das Business-Theater nach oben und unten keine Risse zeigen darf?</p>
+      <div class="manifest__body">
+        <p>Die meisten Netzwerke verkaufen Status. Wir nicht. Bei Impactalyst legen wir das Business-Ego ab, um die Führungskultur von morgen radikal ehrlich zu gestalten — branchenübergreifend, auf Augenhöhe, ohne Show.</p>
+        <p>Wir starten in unserem Heimathafen Hamburg ein offenes Netzwerk für alle, die echte Verantwortung übernehmen. Ohne künstliche Verknappung. Ohne exklusive Einzelplätze. Ohne das ewige Theater.</p>
+        <blockquote class="pullquote">Echte Haltung zeigen und Kultur kollektiv verändern.</blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Gründerin ============ -->
+<section class="section founder reveal" id="gruenderin">
+  <div class="container founder__grid">
+    <figure class="founder__photo">
+      <img src="/assets/img/julia-brauer.jpg" width="1272" height="1696"
+           loading="lazy" decoding="async"
+           alt="Julia Brauer, Gründerin von Impactalyst, vor der Hamburger Hafenkulisse">
+    </figure>
+    <div class="founder__body">
+      <span class="eyebrow">Die Gründerin</span>
+      <blockquote class="founder__quote">„Einmal mutig sein. Lange habe ich darüber nachgedacht, diesen Schritt zu gehen — jetzt eröffne ich mein eigenes Netzwerk."</blockquote>
+      <p class="founder__text">Impactalyst ist aus einer persönlichen Überzeugung entstanden: dass Führung ehrlicher geht. Julia bringt das Netzwerk in Hamburg an den Start — auf Augenhöhe, ohne Show.</p>
+      <p class="founder__meta">{{ site.founder.name }} · {{ site.founder.role }}<br><span>Im Hauptberuf Teamlead Marketing Services</span></p>
+      <a class="btn btn--secondary founder__cta" href="{{ site.founder.linkedin }}" target="_blank" rel="noopener">Auf LinkedIn vernetzen →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Invert: Haltung / Werte ============ -->
+<section class="section invert reveal" id="haltung">
+  <div class="container">
+    <span class="eyebrow">Wofür wir stehen</span>
+    <h2>Vier Prinzipien statt zwölf Floskeln.</h2>
+    <ul class="values">
+      <li>
+        <span class="values__num">01</span>
+        <h3 class="values__title">Offenheit</h3>
+        <p class="values__desc">Branchenübergreifend und ohne geschlossene Türen. Wer Verantwortung trägt, ist willkommen — nicht, wer den richtigen Status mitbringt.</p>
+      </li>
+      <li>
+        <span class="values__num">02</span>
+        <h3 class="values__title">Kollektives Lernen</h3>
+        <p class="values__desc">Wir lernen voneinander und miteinander. Die besten Antworten entstehen, wenn niemand mehr so tun muss, als hätte er sie längst.</p>
+      </li>
+      <li>
+        <span class="values__num">03</span>
+        <h3 class="values__title">Echte Verantwortung</h3>
+        <p class="values__desc">Haltung statt Hochglanz. Wir reden über die schweren Entscheidungen — die, über die anderswo geschwiegen wird.</p>
+      </li>
+      <li>
+        <span class="values__num">04</span>
+        <h3 class="values__title">Kulturwandel</h3>
+        <p class="values__desc">Führungskultur verändert sich nicht durch Vorträge, sondern durch Menschen, die anfangen. Gemeinsam, in Hamburg, mit Wirkung darüber hinaus.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Join / Form ============ -->
+<section class="section join reveal" id="beitreten">
+  <div class="container">
+    <div class="join__grid">
+      <div>
+        <span class="eyebrow">Beitreten</span>
+        <h2>Teil des Netzwerks werden</h2>
+        <p class="join__intro">Bist du bereit, das Business-Ego abzulegen und Führungskultur radikal ehrlich zu gestalten? Schreib uns kurz, wer du bist — wir melden uns persönlich.</p>
+        <p class="join__note-open">Kein Auswahlverfahren, keine Warteliste-Inszenierung. Offen für alle, die echte Verantwortung tragen.</p>
+      </div>
+
+      <form class="form" id="join-form" action="{{ site.formspree }}" method="POST">
+        <input type="hidden" name="_subject" value="Neue Netzwerk-Anfrage – Impactalyst">
+        <input type="hidden" name="_language" value="de">
+        <!-- honeypot (spam) -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+
+        <div class="form__row form__row--split">
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Vor- und Nachname" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" placeholder="du@firma.de" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <label for="rolle">Rolle &amp; Branche</label>
+          <input type="text" id="rolle" name="rolle" placeholder="z. B. Geschäftsführerin, Logistik" autocomplete="organization-title">
+        </div>
+
+        <div class="form__row">
+          <label for="message">Was treibt dich an?</label>
+          <textarea id="message" name="message" placeholder="Ein, zwei Sätze genügen." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary form__submit">Teil des Netzwerks werden</button>
+
+        <p class="form__note">Deine Daten nutzen wir ausschließlich zur Bearbeitung deiner Anfrage und geben sie nicht an Dritte weiter. Mehr in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
+        <p class="form__success" id="form-success" role="status">Danke — deine Anfrage ist da. Wir melden uns persönlich bei dir.</p>
+        <p class="form__error" id="form-error" role="alert">Etwas ist schiefgelaufen. Bitte versuch es erneut oder schreib an <a href="mailto:{{ site.email }}" style="color:inherit">{{ site.email }}</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>

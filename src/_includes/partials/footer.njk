@@ -1,0 +1,43 @@
+{% import "partials/marks.njk" as marks %}
+{% if slimFooter %}
+{# Rechtstexte tragen keinen vollen Footer — sonst wiegt die Fußzeile schwerer als der Text. #}
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__bottom" style="margin-top:0;padding-top:0;border-top:0">
+      <span>© {{ site.year }} {{ site.name }} · {{ site.city }}</span>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+{% else %}
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">
+          {{ marks.icon() }}
+          {{ marks.wordmark() }}
+        </div>
+        <p class="footer__tag">{{ site.tagline }} {{ site.claim }}</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="/vision/">Vision &amp; Manifest</a>
+        {% if collections.events.length %}<a href="/events/">Events &amp; Meetups</a>{% endif %}
+        {% if collections.impulseVorhanden.length %}<a href="/impulse/">Impulse &amp; Methoden</a>{% endif %}
+        <a href="/netzwerk/">Netzwerk &amp; Team</a>
+        <a href="/#beitreten">Beitreten</a>
+        <a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+      </nav>
+    </div>
+    <div class="footer__bottom">
+      <span>© {{ site.year }} {{ site.name }} · {{ site.city }}</span>
+      <span class="credits">Made in Hamburg · Haltung &gt; Hochglanz</span>
+    </div>
+  </div>
+</footer>
+{% endif %}

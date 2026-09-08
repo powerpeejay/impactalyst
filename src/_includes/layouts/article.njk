@@ -1,0 +1,58 @@
+---
+layout: layouts/base.njk
+headerSolid: true
+schema: article
+---
+{#
+  Fachartikel und Event-Recaps. Der Fließtext läuft auf Creme, nicht auf Navy:
+  DESIGN.md §5 fordert genau EINEN Invert-Block als Atempause — auf einer
+  Leseseite ist das der Artikeltext selbst. Langform auf Dunkel wäre schlechter
+  lesbar, und die Regel bleibt gewahrt, wenn man sie pro Seite liest.
+#}
+<article>
+  <header class="article-head">
+    <div class="container">
+      <a class="btn btn--ghost back-link" href="{{ ('/impulse/recaps/' if isRecap else '/impulse/artikel/') }}">
+        ← {{ "Event-Recaps" if isRecap else "Fachartikel" }}
+      </a>
+      <h1>{{ title }}</h1>
+      {% if teaser %}<p class="article-head__teaser">{{ teaser }}</p>{% endif %}
+      <p class="article-head__meta">
+        <time datetime="{{ date | isoDate }}">{{ date | dateDe }}</time>
+        {% if autor %}<span class="sep" aria-hidden="true">·</span>{{ autor }}{% endif %}
+        <span class="sep" aria-hidden="true">·</span>{{ content | lesezeit }} Min. Lesezeit
+      </p>
+    </div>
+  </header>
+
+  <div class="article-body invert">
+    <div class="container">
+      <div class="prose prose--invert">
+        {{ content | safe }}
+      </div>
+
+      {% if themen %}
+      <ul class="tag-list" aria-label="Themen">
+        {% for t in themen %}<li class="tag">{{ t }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</article>
+
+{% set weitere = (collections.eventRecaps if isRecap else collections.fachartikel) %}
+{% if weitere.length > 1 %}
+<section class="section list-section">
+  <div class="container">
+    <span class="eyebrow">Weiterlesen</span>
+    <h2 class="section__title">{{ "Andere Recaps" if isRecap else "Andere Artikel" }}</h2>
+    <ul class="entry-list">
+      {% for entry in weitere | andereEintraege(page.url, 3) %}
+        {% include "partials/entry-row.njk" %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% include "partials/join-band.njk" %}

@@ -1,0 +1,104 @@
+---
+layout: layouts/base.njk
+headerSolid: true
+schema: event
+---
+{%- set istVergangen = date | istVergangen -%}
+<article>
+  <header class="article-head">
+    <div class="container">
+      <a class="btn btn--ghost back-link" href="/events/">← Events &amp; Meetups</a>
+      <span class="eyebrow">{{ "Vergangenes Meetup" if istVergangen else "Lokales Meetup" }}</span>
+      <h1>{{ title }}</h1>
+      {% if teaser %}<p class="article-head__teaser">{{ teaser }}</p>{% endif %}
+
+      <dl class="event-meta">
+        <div class="event-meta__item">
+          <dt>Wann</dt>
+          <dd><time datetime="{{ date | isoDate }}">{{ date | dateDe }}</time>{% if zeit %}, {{ zeit }}{% endif %}</dd>
+        </div>
+        {% if ort %}
+        <div class="event-meta__item">
+          <dt>Wo</dt>
+          <dd>{{ ort }}</dd>
+        </div>
+        {% endif %}
+      </dl>
+    </div>
+  </header>
+
+  {% if content %}
+  <div class="section prose-section">
+    <div class="container">
+      <div class="prose">{{ content | safe }}</div>
+    </div>
+  </div>
+  {% endif %}
+
+  {#
+    Anmeldung. INTAKE §6 verbietet künstliche Verknappung ausdrücklich — also
+    kein Platz-Zähler, kein Countdown, kein "nur noch X frei". Ist die Anmeldung
+    zu, steht dort ein ruhiger Satz und der Weg ins Netzwerk.
+  #}
+  <section class="section event-signup" id="anmeldung">
+    <div class="container">
+      {% if istVergangen %}
+        <span class="eyebrow">Vorbei</span>
+        <h2 class="section__title">Dieses Meetup ist gelaufen.</h2>
+        {% if recap_slug %}
+        <p class="event-signup__note">Was dabei herauskam, steht im Recap.</p>
+        <a class="btn btn--secondary" href="{{ ('/impulse/recaps/' + recap_slug + '/') }}">Zum Recap →</a>
+        {% else %}
+        <p class="event-signup__note">Das nächste Treffen findest du auf der Events-Seite.</p>
+        <a class="btn btn--secondary" href="/events/">Kommende Meetups →</a>
+        {% endif %}
+
+      {% elif anmeldung_offen == false %}
+        <span class="eyebrow">Anmeldung</span>
+        <h2 class="section__title">Die Anmeldung für diesen Termin ist geschlossen.</h2>
+        <p class="event-signup__note">Werde Teil des Netzwerks — dann bekommst du den nächsten Termin direkt mit.</p>
+        <a class="btn btn--primary" href="/#beitreten">Teil des Netzwerks werden</a>
+
+      {% else %}
+        <div class="event-signup__grid">
+          <div>
+            <span class="eyebrow">Anmeldung</span>
+            <h2 class="section__title">Sag Bescheid, dass du kommst.</h2>
+            <p class="event-signup__note">Damit wir wissen, wie viele wir sind. Mehr braucht es nicht.</p>
+          </div>
+
+          <form class="form" data-form="event" action="{{ site.formspree }}" method="POST">
+            <input type="hidden" name="_subject" value="Event-Anmeldung: {{ title }}">
+            <input type="hidden" name="_language" value="de">
+            <input type="hidden" name="event" value="{{ title }} ({{ date | isoDate }})">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+
+            <div class="form__row form__row--split">
+              <div>
+                <label for="ev-name">Name</label>
+                <input type="text" id="ev-name" name="name" placeholder="Vor- und Nachname" autocomplete="name" required>
+              </div>
+              <div>
+                <label for="ev-email">E-Mail</label>
+                <input type="email" id="ev-email" name="email" placeholder="du@firma.de" autocomplete="email" required>
+              </div>
+            </div>
+
+            <div class="form__row">
+              <label for="ev-note">Willst du uns etwas mitgeben? <span class="label-optional">(optional)</span></label>
+              <textarea id="ev-note" name="message" placeholder="Ein Thema, eine Frage, ein Zweifel."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary form__submit">Anmelden</button>
+
+            <p class="form__note">Wir nutzen deine Daten ausschließlich für die Organisation dieses Treffens. Mehr in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
+            <p class="form__success" role="status">Danke — du stehst auf der Liste. Wir melden uns mit den Details.</p>
+            <p class="form__error" role="alert">Etwas ist schiefgelaufen. Bitte versuch es erneut oder schreib an <a href="mailto:{{ site.email }}" style="color:inherit">{{ site.email }}</a>.</p>
+          </form>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+</article>
+
+{% include "partials/join-band.njk" %}

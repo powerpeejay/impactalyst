@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+headerSolid: true
+title: "Events & Meetups"
+eyebrow: "Events & Meetups"
+headline: "Wir treffen uns. Regelmäßig, in echt."
+lead: "Lokale Meetups in Hamburg. Kleine Runden, ehrliche Gespräche, kein Panel-Theater."
+description: "Lokale Meetups von Impactalyst in Hamburg — kommende Termine und vergangene Treffen des Leadership-Netzwerks."
+ogTitle: "Impactalyst — Events & Meetups"
+pagination:
+  data: collections.events
+  size: 1000
+  alias: alleEvents
+permalink: "/events/"
+---
+{% include "partials/page-head.njk" %}
+
+{% if collections.eventsKommend.length %}
+<section class="section list-section" id="kommend">
+  <div class="container">
+    <span class="eyebrow">Lokale Meetups</span>
+    <h2 class="section__title">Als Nächstes</h2>
+    <ul class="entry-list">
+      {% for entry in collections.eventsKommend %}
+        {% include "partials/entry-row.njk" %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% if collections.eventsVergangen.length %}
+<section class="section list-section list-section--muted" id="vergangen">
+  <div class="container">
+    <span class="eyebrow">Archiv</span>
+    <h2 class="section__title">Was schon war</h2>
+    <ul class="entry-list entry-list--past">
+      {% for entry in collections.eventsVergangen %}
+        {% include "partials/entry-row.njk" %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{% include "partials/join-band.njk" %}

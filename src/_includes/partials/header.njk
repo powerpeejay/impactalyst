@@ -1,0 +1,38 @@
+{% import "partials/marks.njk" as marks %}
+{#
+  Sticky Header. `headerSolid` rendert ihn sofort im Scroll-Zustand — für Seiten
+  ohne dunklen Hero, die sonst gegen den Seitenhintergrund verschwinden.
+
+  Navigation ist inhaltsabhängig: "events" und "impulse" erscheinen erst, wenn
+  die zugehörigen Sammlungen etwas enthalten. Solange sie leer sind, existieren
+  die Seiten gar nicht — ein Nav-Punkt dorthin wäre ein toter Link.
+#}
+<header class="site-header{% if headerSolid %} scrolled{% endif %}" id="site-header">
+  <div class="container nav">
+    <a class="brand" href="/" aria-label="Impactalyst — Startseite">
+      {{ marks.icon() }}
+      {{ marks.wordmark() }}
+    </a>
+
+    <button class="nav__toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menü öffnen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16"/>
+      </svg>
+    </button>
+
+    <nav class="nav__links" id="nav-links" aria-label="Hauptnavigation">
+      {%- set navItems = [
+        { href: "/vision/",   label: "vision",   show: true },
+        { href: "/events/",   label: "events",   show: collections.events.length > 0 },
+        { href: "/impulse/",  label: "impulse",  show: collections.impulseVorhanden.length > 0 },
+        { href: "/netzwerk/", label: "netzwerk", show: true }
+      ] -%}
+      {%- for item in navItems -%}
+        {%- if item.show %}
+      <a href="{{ item.href }}"{% if page.url and page.url.startsWith(item.href) %} aria-current="page"{% endif %}>{{ item.label }}</a>
+        {% endif -%}
+      {%- endfor %}
+      <a class="btn btn--primary nav__cta" href="/#beitreten">Teil des Netzwerks werden</a>
+    </nav>
+  </div>
+</header>

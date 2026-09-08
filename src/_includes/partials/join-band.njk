@@ -1,0 +1,14 @@
+{#
+  Wiederkehrender Beitritts-Band auf allen Unterseiten. Das Formular selbst lebt
+  genau einmal — auf der Startseite. Hier steht nur der Weg dorthin, damit das
+  primäre Ziel (INTAKE §3) von jeder Seite aus einen Klick entfernt ist.
+#}
+<section class="join-band">
+  <div class="container join-band__inner">
+    <div>
+      <h2>{{ joinBandTitle | default("Teil des Netzwerks werden") }}</h2>
+      <p>{{ joinBandText | default("Offen für alle, die echte Verantwortung tragen. Kein Auswahlverfahren, keine Warteliste-Inszenierung.") }}</p>
+    </div>
+    <a class="btn btn--primary" href="/#beitreten">Beitreten</a>
+  </div>
+</section>

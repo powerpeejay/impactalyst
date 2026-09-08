@@ -1,0 +1,13 @@
+{# Wortmarke + Icon an einer Stelle. "IMPACT" 800 / "ALYST" 400 — Logo-Logik aus DESIGN.md §10. #}
+
+{% macro icon(cls = "brand__icon", weight = 4.5) %}
+<svg class="{{ cls }}" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+  <circle cx="21" cy="27" r="15" stroke="currentColor" stroke-width="{{ weight }}" stroke-linecap="round" stroke-dasharray="76 18" transform="rotate(-58 21 27)"/>
+  <path d="M26 22 L41 7" stroke="currentColor" stroke-width="{{ weight }}" stroke-linecap="round"/>
+  <path d="M30.5 7 H41 V17.5" stroke="currentColor" stroke-width="{{ weight }}" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+{% endmacro %}
+
+{% macro wordmark() %}
+<span class="brand__word"><b>IMPACT</b><span>ALYST</span></span>
+{% endmacro %}
