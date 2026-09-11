@@ -32,14 +32,16 @@ npm run dev        # http://localhost:8080/
 Kein manueller Schritt, kein `.publish/`-Klon mehr.
 
 ```bash
-npm run dev & AUDIT_BASE=http://localhost:8080 npm run audit   # vorher prüfen
+npm run dev & npm run audit                                    # vorher prüfen
 git add -A && git commit -m "…" && git push
 ```
 
 Die Build-Konfiguration steht in `vercel.json` (`buildCommand`,
-`outputDirectory: _site`). Die Produktions-URL setzt sich selbst: `site.origin`
-liest `VERCEL_PROJECT_PRODUCTION_URL`. Für `impactalyst.de` später einfach
-`SITE_ORIGIN` als Environment Variable in Vercel setzen — sonst nichts.
+`outputDirectory: _site`). Die Produktions-URL kommt aus `site.origin`: gesetzt
+wird sie über die Environment Variable `SITE_ORIGIN` (`https://impactalyst.de`),
+ohne sie fällt der Build auf `VERCEL_PROJECT_PRODUCTION_URL` zurück und lokal auf
+`http://localhost:8080`. Alle absoluten URLs — canonical, `og:`-Tags, Sitemap,
+robots.txt und die JSON-LD-Blöcke — hängen an dieser einen Variable.
 
 ---
 
@@ -133,14 +135,17 @@ Web-Standard-APIs und läuft deshalb unverändert auf Vercel.
 **Einrichtung — einmalig:**
 
 1. **GitHub OAuth App** anlegen (Settings → Developer settings → OAuth Apps):
-   - Homepage URL: `https://impactalyst.vercel.app`
-   - Authorization callback URL: `https://impactalyst.vercel.app/callback`
+   - Homepage URL: `https://impactalyst.de`
+   - Authorization callback URL: `https://impactalyst.de/callback`
+   - Muss zu `base_url` in `admin/config.yml` passen: `api/auth.js` schickt
+     bewusst **kein** `redirect_uri`, GitHub nimmt also die hier hinterlegte URL
 2. **Environment Variables in Vercel** setzen (Production):
    - `GITHUB_CLIENT_ID`
    - `GITHUB_CLIENT_SECRET` (als Secret markieren)
-   - `ALLOWED_DOMAINS` = `impactalyst.vercel.app` — ohne diese Variable fällt
-     der Code auf die Vercel-Produktionsdomain zurück; ein leerer Wert würde
-     jede Domain zulassen
+   - `SITE_ORIGIN` = `https://impactalyst.de`
+   - `ALLOWED_DOMAINS` = `impactalyst.de,www.impactalyst.de,impactalyst.vercel.app`
+     — ohne diese Variable fällt der Code auf die Vercel-Produktionsdomain
+     zurück; ein leerer Wert würde jede Domain zulassen
 3. **Julia einladen:** Repo → Settings → Collaborators → **Write**
 
 Danach: `/admin/` → „Mit GitHub anmelden" → schreiben → Veröffentlichen →
@@ -160,8 +165,10 @@ Domain-Whitelist, Token-Tausch und dass das Secret den Server nie verlässt.
   sind vorab festgehalten: Pull Request statt Push, Shared Secret plus
   DKIM-Prüfung, ein expliziter Bildverarbeitungs-Schritt, und ein LLM, das
   strukturiert statt umzuschreiben (sonst frisst es die Markenstimme).
-- **Domain `impactalyst.de`.** Geplant, nicht registriert. Umzug = Domain in
-  Vercel hinterlegen und `SITE_ORIGIN` als Env-Var setzen.
+- **E-Mail auf der Domain.** `impactalyst.de` hat keine MX-Records; Kontakt
+  läuft über `julia.brauer@gmx.net` (`src/_data/site.js`). Kommt später eine
+  Domain-Mailbox, ändert sich nur diese eine Zeile — alle Anzeigestellen hängen
+  daran.
 
 ## Offene Punkte vor Launch
 

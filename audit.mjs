@@ -16,7 +16,7 @@
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 
-const BASE = process.env.AUDIT_BASE || 'http://localhost:8080/impactalyst';
+const BASE = process.env.AUDIT_BASE || 'http://localhost:8080';
 const HOST = new URL(BASE).host;
 
 // Routen aus der Sitemap ziehen, damit neue Inhalte automatisch mitgeprüft werden.

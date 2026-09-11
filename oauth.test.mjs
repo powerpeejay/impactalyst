@@ -5,11 +5,11 @@ import { GET as callback } from './api/callback.js';
 
 process.env.GITHUB_CLIENT_ID = 'TEST_ID';
 process.env.GITHUB_CLIENT_SECRET = 'TEST_SECRET';
-process.env.ALLOWED_DOMAINS = 'impactalyst.vercel.app,impactalyst.de';
+process.env.ALLOWED_DOMAINS = 'impactalyst.de,www.impactalyst.de,impactalyst.vercel.app';
 
 const req = (url, cookie) =>
   new Request(url, { headers: cookie ? { Cookie: cookie } : {} });
-const B = 'https://impactalyst.vercel.app';
+const B = 'https://impactalyst.de';
 let ok = 0, bad = 0;
 const pruefe = (name, bedingung, detail = '') => {
   if (bedingung) { console.log(`  ✓ ${name}`); ok++; }
@@ -17,7 +17,7 @@ const pruefe = (name, bedingung, detail = '') => {
 };
 
 console.log('--- /auth ---');
-let r = await auth(req(`${B}/auth?provider=github&site_id=impactalyst.vercel.app`));
+let r = await auth(req(`${B}/auth?provider=github&site_id=impactalyst.de`));
 const loc = r.headers.get('Location') ?? '';
 const cookie = r.headers.get('Set-Cookie') ?? '';
 pruefe('302 zu GitHub', r.status === 302 && loc.startsWith('https://github.com/login/oauth/authorize'), loc.slice(0,60));
@@ -31,7 +31,7 @@ console.log('--- Domain-Sperre ---');
 r = await auth(req(`${B}/auth?provider=github&site_id=boese.example.com`));
 let html = await r.text();
 pruefe('fremde Domain abgewiesen', html.includes('UNSUPPORTED_DOMAIN'));
-r = await auth(req(`${B}/auth?provider=gitlab&site_id=impactalyst.vercel.app`));
+r = await auth(req(`${B}/auth?provider=gitlab&site_id=impactalyst.de`));
 pruefe('anderes Backend abgewiesen', (await r.text()).includes('UNSUPPORTED_BACKEND'));
 
 console.log('--- /callback CSRF ---');
@@ -44,7 +44,7 @@ pruefe('fehlender Code abgewiesen', (await r.text()).includes('AUTH_CODE_REQUEST
 
 console.log('--- fehlende Konfiguration ---');
 delete process.env.GITHUB_CLIENT_ID;
-r = await auth(req(`${B}/auth?provider=github&site_id=impactalyst.vercel.app`));
+r = await auth(req(`${B}/auth?provider=github&site_id=impactalyst.de`));
 pruefe('ohne Client ID: klarer Fehler', (await r.text()).includes('MISCONFIGURED_CLIENT'));
 
 console.log('--- Token-Tausch (GitHub gemockt) ---');
@@ -85,7 +85,7 @@ pruefe(
 const muster = JSON.parse(html.match(/trustedPatterns = (\[.*?\]);/)[1]);
 pruefe(
   'eigene Domain gilt als vertrauenswuerdig',
-  muster.some((m) => new RegExp(m).test('impactalyst.vercel.app')),
+  muster.some((m) => new RegExp(m).test('impactalyst.de')),
 );
 pruefe(
   'fremde Domain gilt NICHT als vertrauenswuerdig',
@@ -93,7 +93,7 @@ pruefe(
 );
 pruefe(
   'Praefix-Trick greift nicht (verankerte Regex)',
-  !muster.some((m) => new RegExp(m).test('impactalyst.vercel.app.evil.com')),
+  !muster.some((m) => new RegExp(m).test('impactalyst.de.evil.com')),
 );
 
 globalThis.fetch = async () =>

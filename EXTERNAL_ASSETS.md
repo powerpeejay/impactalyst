@@ -8,6 +8,16 @@ Every third-party request the production site makes. DSGVO accountability.
 |---|---|---|---|
 | (none) | — | — | Fonts self-hosted (`/fonts/*.woff2`), Bilder lokal, kein Analytics, keine Social-Embeds, keine CDN. **Beim reinen Seitenaufruf verlässt kein Visitor-Request die eigene Domain.** |
 
+## Hosting (Auftragsverarbeiter, kein Third-Party-Request)
+
+Kein externer Request im obigen Sinn — aber jeder Seitenaufruf trifft
+zwangsläufig den Hoster, und das ist eine Auftragsverarbeitung.
+
+| Dienst | Rolle | DSGVO note |
+|---|---|---|
+| Vercel (Vercel Inc., Walnut, CA, USA) | Hosting der Site, Auslieferung über Edge-Nodes, Server-Logfiles, Vercel Functions für den CMS-Login (`/auth`, `/callback`) | **Drittland USA.** AVV nach Art. 28 DSGVO, Standardvertragsklauseln (Art. 46 Abs. 2 lit. c) bzw. EU-US Data Privacy Framework. Rechtsgrundlage Art. 6 Abs. 1 lit. f. Logfiles ≤ 30 Tage. Dokumentiert in `src/datenschutz.njk` §3.1. |
+| INWX (InterNetworX Ltd. & Co. KG, Berlin) | Domain-Registrar und autoritativer DNS für `impactalyst.de` | EU-Anbieter. DNS-Auflösung erzeugt keinen personenbezogenen Visitor-Request an INWX-Server im Sinne dieser Liste. |
+
 ## Requests on user action (active)
 
 | URL / domain | Purpose | Justification | DSGVO note |
@@ -15,7 +25,7 @@ Every third-party request the production site makes. DSGVO accountability.
 | `formspree.io/f/mgobrewv` | Versand des Beitritts-/Kontaktformulars | Formular-Backend (statische Seite kann nicht selbst mailen). Muster aus `jacobdigital/`. | **Drittland USA** (Formspree, Inc., Palo Alto, CA). Übermittlung von Name, E-Mail, Rolle/Branche, Nachricht **erst beim Absenden**. Rechtsgrundlage Art. 6 Abs. 1 lit. b/f + Art. 49 Abs. 1 lit. a DSGVO. Dokumentiert in `src/datenschutz.njk` §4.1. Gilt jetzt für **zwei** Formulare: Beitritt (Startseite) und Event-Anmeldung (Event-Detailseiten) — dieselbe Form-ID, unterschiedliche `_subject`. |
 | `instagram.com/impactalyst.thenetwork` | Footer-Link zum Profil | Social-Präsenz | Reiner Link, **kein** eingebettetes Skript/Widget. Datenfluss erst nach aktivem Klick (dann Meta-Datenschutz). |
 | `linkedin.com/in/julia-brauer-hamburg` | Link zu LinkedIn-Profilen (Team-Sektion auf `/netzwerk/`) | Persönlicher Trust-Anker | Reiner Link, **kein** eingebettetes Skript/Widget. Datenfluss erst nach aktivem Klick (dann LinkedIn-Datenschutz, LinkedIn Ireland Ltd.). |
-| `mailto:hallo@impactalyst.de` | Direkter E-Mail-Kontakt (Fehler-Fallback im Formular) | Alternative zum Formular | Kein Tracking. |
+| `mailto:julia.brauer@gmx.net` | Direkter E-Mail-Kontakt (Fehler-Fallback im Formular, Impressum, Datenschutz) | Alternative zum Formular | Kein Tracking. Adresse zentral in `src/_data/site.js`. `impactalyst.de` hat keine MX-Records, daher eine externe Mailbox. |
 
 
 ## Redaktionsoberfläche `/admin/` (nicht besucherseitig)
@@ -52,9 +62,10 @@ sind im Bundle fest verdrahtet und nicht abschaltbar.
 ## Offene Punkte vor Launch
 
 - [ ] **Formspree-Form-ID** `mgobrewv` verifiziert (Test-Submit nach Deploy).
-- [ ] **Hosting-Anbieter** wählen → Server-Logfile-Abschnitt + AVV in `datenschutz.html` §3 ergänzen.
-- [ ] **Impressum-Daten** ausfüllen (`src/impressum.njk` Platzhalter `[…]`).
+- [x] **Hosting-Anbieter** steht: Vercel → `src/datenschutz.njk` §3.1 ausformuliert (AVV, Drittland USA, 30 Tage Logfile-Aufbewahrung).
+- [x] **Impressum-Daten** ausgefüllt (`src/impressum.njk`) — Privatperson ohne Gewerbe, daher ohne Registereintrag und USt-ID.
 - [ ] Entscheiden, ob die externen Requests der Redaktionsoberfläche (siehe oben) so bleiben.
-- [ ] Domain `impactalyst.de` bestätigen/registrieren (alle absoluten URLs nutzen sie bereits).
+- [x] Domain `impactalyst.de` registriert (INWX). DNS auf Vercel umgestellt, `SITE_ORIGIN` gesetzt.
+- [ ] **Julia gegenlesen lassen:** Impressum und Datenschutz nennen Privatanschrift und private Mailadresse öffentlich.
 
 **Rule:** if it's not on this list, it doesn't load.

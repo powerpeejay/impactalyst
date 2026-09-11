@@ -6,8 +6,8 @@
 //   npx playwright install chromium
 //
 // Usage:
-//   node screenshot.mjs                              # all viewports of localhost:3000
-//   node screenshot.mjs http://localhost:3000        # explicit URL
+//   node screenshot.mjs                              # all viewports of localhost:8080
+//   node screenshot.mjs http://localhost:8080        # explicit URL
 //   node screenshot.mjs https://staging.example.com  # any URL
 //   node screenshot.mjs --viewport=mobile            # single viewport
 //   node screenshot.mjs --full-page                  # full scrollable page
@@ -28,7 +28,7 @@ const VIEWPORTS = {
 
 // ---- parse args ----
 const args = process.argv.slice(2);
-const url = args.find(a => a.startsWith('http')) || 'http://localhost:3000';
+const url = args.find(a => a.startsWith('http')) || 'http://localhost:8080';
 const viewportArg = args.find(a => a.startsWith('--viewport='))?.split('=')[1];
 const fullPage = args.includes('--full-page');
 const dark = args.includes('--dark');

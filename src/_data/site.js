@@ -23,7 +23,7 @@ export default {
   themeColor: '#23292F',
 
   city: 'Hamburg',
-  email: 'hallo@impactalyst.de',
+  email: 'julia.brauer@gmx.net',
 
   instagram: 'https://www.instagram.com/impactalyst.thenetwork/',
   founder: {
