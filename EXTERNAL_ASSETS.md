@@ -22,7 +22,7 @@ zwangsläufig den Hoster, und das ist eine Auftragsverarbeitung.
 
 | URL / domain | Purpose | Justification | DSGVO note |
 |---|---|---|---|
-| `formspree.io/f/mgobrewv` | Versand des Beitritts-/Kontaktformulars | Formular-Backend (statische Seite kann nicht selbst mailen). Muster aus `jacobdigital/`. | **Drittland USA** (Formspree, Inc., Palo Alto, CA). Übermittlung von Name, E-Mail, Rolle/Branche, Nachricht **erst beim Absenden**. Rechtsgrundlage Art. 6 Abs. 1 lit. b/f + Art. 49 Abs. 1 lit. a DSGVO. Dokumentiert in `src/datenschutz.njk` §4.1. Gilt jetzt für **zwei** Formulare: Beitritt (Startseite) und Event-Anmeldung (Event-Detailseiten) — dieselbe Form-ID, unterschiedliche `_subject`. |
+| `formspree.io/f/xppznnwr` | Versand des Beitritts-/Kontaktformulars | Formular-Backend (statische Seite kann nicht selbst mailen). Muster aus `jacobdigital/`. | **Drittland USA** (Formspree, Inc., Palo Alto, CA). Übermittlung von Name, E-Mail, Rolle/Branche, Nachricht **erst beim Absenden**. Rechtsgrundlage Art. 6 Abs. 1 lit. b/f + Art. 49 Abs. 1 lit. a DSGVO. Dokumentiert in `src/datenschutz.njk` §4.1. Gilt jetzt für **zwei** Formulare: Beitritt (Startseite) und Event-Anmeldung (Event-Detailseiten) — dieselbe Form-ID, unterschiedliche `_subject`. |
 | `instagram.com/impactalyst.thenetwork` | Footer-Link zum Profil | Social-Präsenz | Reiner Link, **kein** eingebettetes Skript/Widget. Datenfluss erst nach aktivem Klick (dann Meta-Datenschutz). |
 | `linkedin.com/in/julia-brauer-hamburg` | Link zu LinkedIn-Profilen (Team-Sektion auf `/netzwerk/`) | Persönlicher Trust-Anker | Reiner Link, **kein** eingebettetes Skript/Widget. Datenfluss erst nach aktivem Klick (dann LinkedIn-Datenschutz, LinkedIn Ireland Ltd.). |
 | `mailto:julia.brauer@gmx.net` | Direkter E-Mail-Kontakt (Fehler-Fallback im Formular, Impressum, Datenschutz) | Alternative zum Formular | Kein Tracking. Adresse zentral in `src/_data/site.js`. `impactalyst.de` hat keine MX-Records, daher eine externe Mailbox. |
@@ -61,7 +61,7 @@ sind im Bundle fest verdrahtet und nicht abschaltbar.
 
 ## Offene Punkte vor Launch
 
-- [ ] **Formspree-Form-ID** `mgobrewv` verifiziert (Test-Submit nach Deploy).
+- [ ] **Formspree-Form-ID** `xppznnwr` verifiziert (Test-Submit nach Deploy — kommt die Mail bei `julia.brauer@gmx.net` an?).
 - [x] **Hosting-Anbieter** steht: Vercel → `src/datenschutz.njk` §3.1 ausformuliert (AVV, Drittland USA, 30 Tage Logfile-Aufbewahrung).
 - [x] **Impressum-Daten** ausgefüllt (`src/impressum.njk`) — Privatperson ohne Gewerbe, daher ohne Registereintrag und USt-ID.
 - [ ] Entscheiden, ob die externen Requests der Redaktionsoberfläche (siehe oben) so bleiben.

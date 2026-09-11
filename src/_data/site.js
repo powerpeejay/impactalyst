@@ -33,7 +33,7 @@ export default {
   },
 
   // Formspree — siehe EXTERNAL_ASSETS.md und Datenschutzerklärung
-  formspree: 'https://formspree.io/f/mgobrewv',
+  formspree: 'https://formspree.io/f/xppznnwr',
 
   ogImage: '/assets/og-image.png',
 

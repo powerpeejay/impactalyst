@@ -173,5 +173,5 @@ Domain-Whitelist, Token-Tausch und dass das Secret den Server nie verlässt.
 ## Offene Punkte vor Launch
 
 Siehe `EXTERNAL_ASSETS.md` → „Offene Punkte vor Launch". Kurzfassung:
-Impressum-Platzhalter ausfüllen, Formspree-Form-ID testen, Hosting-Abschnitt
-in der Datenschutzerklärung ergänzen.
+Formspree-Form-ID per Test-Submit verifizieren und Julia die Rechtstexte
+gegenlesen lassen — Impressum und Datenschutz nennen ihre Privatanschrift.
