@@ -62,7 +62,7 @@ collections:
         picker_utc: true
       - { name: zeit, label: "Uhrzeit", widget: string, required: false, hint: "z. B. 18:30 – 21:00 Uhr" }
       - { name: ort, label: "Ort", widget: string, required: false, hint: "z. B. Hamburg, Speicherstadt" }
-      - { name: teaser, label: "Teaser", widget: text, required: false, hint: "Ein Satz für die Listenansicht." }
+      - { name: teaser, label: "Teaser", widget: text, hint: "Ein Satz. Erscheint in Listen UND als Text im Google-Suchergebnis — daher Pflicht. Ideal 70–155 Zeichen." }
       - name: anmeldung_offen
         label: "Anmeldung offen"
         widget: boolean
@@ -90,7 +90,7 @@ collections:
         date_format: "DD.MM.YYYY"
         time_format: false
         picker_utc: true
-      - { name: teaser, label: "Teaser", widget: text, hint: "Ein bis zwei Sätze. Erscheint in Listen und als Vorschautext." }
+      - { name: teaser, label: "Teaser", widget: text, hint: "Ein bis zwei Sätze. Erscheint in Listen, als Vorschautext UND im Google-Suchergebnis. Ideal 70–155 Zeichen." }
       - { name: autor, label: "Autor:in", widget: string, required: false }
       - name: themen
         label: "Themen"
@@ -118,7 +118,7 @@ collections:
         date_format: "DD.MM.YYYY"
         time_format: false
         picker_utc: true
-      - { name: teaser, label: "Teaser", widget: text }
+      - { name: teaser, label: "Teaser", widget: text, hint: "Ein bis zwei Sätze. Erscheint in Listen UND im Google-Suchergebnis. Ideal 70–155 Zeichen." }
       - { name: autor, label: "Autor:in", widget: string, required: false }
       - { name: themen, label: "Themen", widget: list, required: false }
       - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }

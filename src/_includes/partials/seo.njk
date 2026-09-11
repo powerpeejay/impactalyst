@@ -2,19 +2,22 @@
   Alles zwischen <head> und </head>. Erwartet aus dem Front Matter:
     title        Seitentitel ohne Markenzusatz
     titleFull    optional — überschreibt den zusammengesetzten <title> komplett
-    description  Meta-Description
+    description  Meta-Description — fehlt sie, springt `teaser` ein (CMS-Feld)
     ogTitle / ogDescription   optional — sonst Fallback auf title/description
     noindex      true für Rechtstexte und /admin/
     preloadFont  optional — zusätzliche woff2 vorladen
 #}
 {%- set canonical = site.origin + (page.url | url) -%}
+{#- Content aus dem CMS liefert `teaser` statt `description`. Ohne diesen
+    Fallback blieben Events, Artikel und Recaps ohne Meta-Description. -#}
+{%- set metaDescription = description or teaser -%}
 {%- set ogImage = site.origin + (site.ogImage | url) -%}
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>{% if titleFull %}{{ titleFull }}{% else %}{{ title }} — {{ site.name }}{% endif %}</title>
-<meta name="description" content="{{ description }}">
+<meta name="description" content="{{ metaDescription }}">
 <meta name="theme-color" content="{{ site.themeColor }}">
 <link rel="canonical" href="{{ canonical }}">
 {% if noindex %}<meta name="robots" content="noindex, follow">{% endif %}
@@ -24,14 +27,14 @@
 <meta property="og:locale" content="{{ site.locale }}">
 <meta property="og:site_name" content="{{ site.name }}">
 <meta property="og:title" content="{{ ogTitle | default(title) }}">
-<meta property="og:description" content="{{ ogDescription | default(description) }}">
+<meta property="og:description" content="{{ ogDescription | default(metaDescription) }}">
 <meta property="og:url" content="{{ canonical }}">
 <meta property="og:image" content="{{ ogImage }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ ogTitle | default(title) }}">
-<meta name="twitter:description" content="{{ ogDescription | default(description) }}">
+<meta name="twitter:description" content="{{ ogDescription | default(metaDescription) }}">
 <meta name="twitter:image" content="{{ ogImage }}">
 
 <!-- Favicon -->
