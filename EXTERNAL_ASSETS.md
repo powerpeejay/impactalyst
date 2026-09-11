@@ -51,6 +51,13 @@ Seiten sind nachweislich frei von externen Requests** (automatisiert geprüft).
 Wenn das nicht akzeptabel ist, bleibt nur, Sveltia zu ersetzen — die Requests
 sind im Bundle fest verdrahtet und nicht abschaltbar.
 
+**Content-Security-Policy:** Die strikte CSP in `vercel.json` gilt bewusst
+**nicht** für `/admin/`, `/auth` und `/callback`. Sveltia braucht unpkg,
+jsDelivr, die GitHub-API und `eval`; die beiden Auth-Endpunkte liefern
+Inline-Skripte mit dynamischem Token, für die sich kein Hash bilden lässt.
+Eine CSP dort würde den CMS-Login zerstören, ohne Besucher zu schützen —
+öffentliche Besucher erreichen diese Pfade nicht.
+
 ## Build-time only (kein Visitor-Request)
 
 | Quelle | Zweck | Hinweis |

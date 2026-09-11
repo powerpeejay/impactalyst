@@ -16,7 +16,8 @@
     "shoot:rm": "node screenshot.mjs --reduced-motion",
     "fetch:photos": "node fetch-photos.mjs",
     "fetch:photos:dry": "node fetch-photos.mjs --dry-run",
-    "favicon": "node generate-favicon.mjs"
+    "favicon": "node generate-favicon.mjs",
+    "favicon:ico": "node favicon-ico.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",

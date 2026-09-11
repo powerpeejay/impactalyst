@@ -33,6 +33,7 @@ export default function (eleventyConfig) {
     fonts: 'fonts',
     assets: 'assets',
     'favicon.svg': 'favicon.svg',
+    'favicon.ico': 'favicon.ico',
     'apple-touch-icon.png': 'apple-touch-icon.png',
     // Redaktionsoberfläche (Sveltia CMS) — per robots.txt und noindex ausgeschlossen.
     admin: 'admin',
