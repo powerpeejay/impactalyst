@@ -27,8 +27,18 @@ schema: event
     </div>
   </header>
 
+  {% if bild %}
+  {%- set masse = bild | bildMasse -%}
+  <figure class="article-figure{% if masse and masse.height > masse.width %} article-figure--hoch{% endif %}">
+    <div class="container">
+      <img src="{{ bild }}" alt="{{ bild_alt }}"{% if masse %} width="{{ masse.width }}" height="{{ masse.height }}"{% endif %}
+           fetchpriority="high" decoding="async">
+    </div>
+  </figure>
+  {% endif %}
+
   {% if content %}
-  <div class="section prose-section">
+  <div class="section prose-section{% if bild %} prose-section--nach-bild{% endif %}">
     <div class="container">
       <div class="prose">{{ content | safe }}</div>
     </div>

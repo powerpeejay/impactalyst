@@ -69,6 +69,8 @@ collections:
         default: true
         hint: "Aus = ruhiger Hinweis statt Formular. Keine Platzzahlen — das Netzwerk arbeitet ohne künstliche Verknappung."
       - { name: recap_slug, label: "Recap-Slug", widget: string, required: false, hint: "Dateiname des Recaps ohne .md, falls es schon einen gibt." }
+      - { name: bild, label: "Bild", widget: image, required: false, hint: "Erscheint groß über der Beschreibung und als Vorschaubild beim Teilen. Querformat wirkt am besten." }
+      - { name: bild_alt, label: "Bildbeschreibung", widget: string, required: false, hint: "Was ist auf dem Bild zu sehen? Ein Satz genügt." }
       - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
       - { name: body, label: "Beschreibung", widget: markdown, required: false }
 

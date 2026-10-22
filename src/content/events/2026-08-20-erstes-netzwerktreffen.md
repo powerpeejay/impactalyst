@@ -1,11 +1,17 @@
 ---
-title: "Erstes Netzwerktreffen"
+title: "Das erste Netzwerk-Treffen"
 date: 2026-08-20
-ort: "Planten un Blomen, Hamburg"
-teaser: "Der Auftakt: Das erste Treffen von Impactalyst — mitten im Grünen, im Heimathafen Hamburg."
+ort: "Sankt Liederlich, Hamburg"
+teaser: "Der Auftakt im Sankt Liederlich: das erste Treffen des offenen, branchenübergreifenden Leadership-Netzwerks im Heimathafen Hamburg."
 anmeldung_offen: false
+bild: "/assets/img/uploads/event-erstes-netzwerktreffen.jpg"
+bild_alt: "Menschen im Gespräch in einer gemütlichen Bar, über dem Tresen ein Schild „Netzwerk Treffen – Bar Conversations“"
 ---
 
-Wir fangen gerade erst an. Das erste Netzwerktreffen von Impactalyst — für alle, die mehr erfahren und die Menschen hinter dem Netzwerk kennenlernen wollen.
+Mit welchen Leadern teilst du deine größten strategischen Zweifel, wenn das alltägliche Business-Theater nach oben und unten keine Risse zeigen darf?
 
-Kein Programm mit Panel und Präsentation, sondern Real Talk statt Business-Theater: Wir sprechen über Erfolge, aber vor allem über die Hürden des Führungsalltags.
+Bei Impactalyst legen wir das Business-Ego ab, um die Führungskultur von morgen radikal ehrlich zu gestalten. Wir starten in unserem Heimathafen Hamburg ein branchenübergreifendes, offenes Netzwerk für alle, die echte Verantwortung übernehmen — ganz ohne künstliche Verknappung oder exklusive Einzelplätze.
+
+Bist du bereit, echte Haltung zu zeigen und Kultur kollektiv zu verändern?
+
+Am 20.08.2026 ging es los: unser erstes Treffen in Hamburg, im Sankt Liederlich.

@@ -9,7 +9,7 @@
   "eventStatus": "https://schema.org/EventScheduled",
   "inLanguage": "de-DE",
   "url": {{ (site.origin + (page.url | url)) | dump | safe }},
-  "image": {{ (site.origin + (site.ogImage | url)) | dump | safe }},
+  "image": {{ (site.origin + ((bild if bild else site.ogImage) | url)) | dump | safe }},
   "location": {
     "@type": "Place",
     "name": {{ (ort | default("Hamburg")) | dump | safe }},

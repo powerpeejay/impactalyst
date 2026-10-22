@@ -506,6 +506,7 @@ h1,h2,h3{overflow-wrap:break-word}
 .article-figure img{width:100%;max-width:62ch;height:auto;border-radius:var(--radius);
   box-shadow:var(--shadow-float)}
 .article-figure--hoch img{max-width:min(26rem,100%)}
+.prose-section--nach-bild{padding-top:calc(4rem + clamp(2rem,5vw,3rem))}
 .article-figure + .article-body{padding-top:calc(4rem + clamp(2rem,5vw,3rem))}
 
 /* ---- Artikeltext ---- */

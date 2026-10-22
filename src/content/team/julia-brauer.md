@@ -1,6 +1,6 @@
 ---
 name: "Julia Brauer"
-rolle: "Gründerin von Impactalyst · im Hauptberuf Teamlead Marketing Services"
+rolle: "Gründerin von Impactalyst · im Hauptberuf Head of Financial Operations"
 foto: "/assets/img/julia-brauer.jpg"
 linkedin: "https://www.linkedin.com/in/julia-brauer-hamburg/"
 reihenfolge: 1
