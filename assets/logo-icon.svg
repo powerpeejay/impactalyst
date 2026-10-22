@@ -1,9 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" role="img" aria-label="Impactalyst">
-  <!-- open ring: gap in the upper-right where the arrow breaks out -->
-  <circle cx="21" cy="27" r="15" stroke="currentColor" stroke-width="4.5"
-          stroke-linecap="round" stroke-dasharray="76 18" transform="rotate(-58 21 27)"/>
-  <!-- breakout arrow, up-right -->
-  <path d="M26 22 L41 7" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/>
-  <path d="M30.5 7 H41 V17.5" stroke="currentColor" stroke-width="4.5"
-        stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="#C59C4A" role="img" aria-label="Impactalyst">
+  <!-- offener Ring; beide Schnittkanten laufen parallel zum Pfeil -->
+  <path d="M59.6 18.73A41.1 41.1 0 1 0 78.82 38.84L72.67 45.74A32.9 32.9 0 1 1 54.26 25.28Z"/>
+  <!-- Aufbruchs-Pfeil nach oben rechts -->
+  <path d="M99.5 2 67.5 18H79L58.75 46.25 67 43Z"/>
 </svg>

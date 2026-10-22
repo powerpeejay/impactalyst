@@ -70,7 +70,7 @@ _fixtures/                   erfundene Demo-Inhalte (nicht im Repo)
 /events/                   Events & Meetups  ← „Lokale Meetups"
 /events/<slug>/            Einzel-Event + Anmeldung
 /impulse/                  Impulse & Methoden (Hub)
-/impulse/artikel/          Fachartikel        → /impulse/artikel/<slug>/
+/impulse/artikel/          Impulsbeiträge     → /impulse/artikel/<slug>/
 /impulse/ressourcen/       Ressourcen-Bibliothek
 /impulse/recaps/           Event-Recaps       → /impulse/recaps/<slug>/
 /netzwerk/                 Netzwerk & Team

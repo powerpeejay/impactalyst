@@ -11,7 +11,9 @@
 {#- Content aus dem CMS liefert `teaser` statt `description`. Ohne diesen
     Fallback blieben Events, Artikel und Recaps ohne Meta-Description. -#}
 {%- set metaDescription = description or teaser -%}
-{%- set ogImage = site.origin + (site.ogImage | url) -%}
+{#- Impulsbeiträge mit eigenem Bild teilen sich mit diesem Bild, sonst mit dem Banner. -#}
+{%- set ogBildMasse = (bild | bildMasse) if bild else null -%}
+{%- set ogImage = site.origin + ((bild if bild else site.ogImage) | url) -%}
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,8 +32,9 @@
 <meta property="og:description" content="{{ ogDescription | default(metaDescription) }}">
 <meta property="og:url" content="{{ canonical }}">
 <meta property="og:image" content="{{ ogImage }}">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="{{ ogBildMasse.width if ogBildMasse else 1200 }}">
+<meta property="og:image:height" content="{{ ogBildMasse.height if ogBildMasse else 630 }}">
+{% if bild and bild_alt %}<meta property="og:image:alt" content="{{ bild_alt }}">{% endif %}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ ogTitle | default(title) }}">
 <meta name="twitter:description" content="{{ ogDescription | default(metaDescription) }}">
@@ -43,8 +46,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <!-- Fonts: self-hosted woff2. Kein Google-CDN (DSGVO, CLAUDE.md §10). -->
-<link rel="preload" href="/fonts/bricolage-grotesque-800-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/geist-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/montserrat-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 {% if preloadFont %}<link rel="preload" href="{{ preloadFont }}" as="font" type="font/woff2" crossorigin>{% endif %}
 <link rel="stylesheet" href="/css/fonts.css">
 <link rel="stylesheet" href="/css/styles.css">

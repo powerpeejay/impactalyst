@@ -20,7 +20,7 @@ export default {
 
   lang: 'de',
   locale: 'de_DE',
-  themeColor: '#23292F',
+  themeColor: '#F6F2EF',
 
   city: 'Hamburg',
   email: 'julia.brauer@gmx.net',

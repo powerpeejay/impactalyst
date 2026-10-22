@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Impactalyst">
-  <rect width="48" height="48" rx="9" fill="#23292F"/>
-  <g fill="none" stroke="#D2A954" stroke-width="4">
-    <circle cx="20.5" cy="27.5" r="12.5" stroke-linecap="round" stroke-dasharray="63 16" transform="rotate(-58 20.5 27.5)"/>
-    <path d="M25 23 L38 10" stroke-linecap="round"/>
-    <path d="M28.5 10 H38 V19.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="48" height="48" rx="9" fill="#2E3641"/>
+  <g fill="#D4AE5E" transform="translate(6 6) scale(.36)">
+    <path d="M59.6 18.73A41.1 41.1 0 1 0 78.82 38.84L72.67 45.74A32.9 32.9 0 1 1 54.26 25.28Z"/>
+    <path d="M99.5 2 67.5 18H79L58.75 46.25 67 43Z"/>
   </g>
 </svg>

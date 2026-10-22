@@ -10,4 +10,10 @@ title: "Julia Brauer"
 „Einmal mutig sein. Lange habe ich darüber nachgedacht, diesen Schritt zu gehen —
 jetzt eröffne ich mein eigenes Netzwerk."
 
-Julia bringt Impactalyst in Hamburg an den Start — auf Augenhöhe, ohne Show.
+Julia, 37, ist seit fast sechs Jahren Führungskraft und ausgebildeter systemischer
+Coach. Sie wollte immer führen — vor allem wollte sie es besser machen als ihre
+damaligen Vorgesetzten. Ihre Überzeugung: **Leadership ist eine Superpower, die
+man erlernen kann.**
+
+Mit Impactalyst bringt sie in ihrem Heimathafen Hamburg ein Netzwerk an den Start,
+in dem Führungskräfte die Business-Maske ablegen — auf Augenhöhe, ohne Show.

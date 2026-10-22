@@ -5,6 +5,24 @@
 > Pair with `CLAUDE.md` (build rules) in the project root.
 > Locked direction: **C — „Ego ablegen"** (bold · statement-typography). See `directions/_archive/` for the alternatives.
 
+> **Update 2026-10-19 — Re-Brand auf das finale Logo.** Das gelieferte Logo-Banner (Creme-Grund, Navy-Schrift, Gold-Icon, neblige Bergketten, Montserrat) ersetzt die dunkle Direction C als Basis. Die Haltung („Ego ablegen.", Streich-Strich) bleibt; Farben, Typo und Hero folgen jetzt dem Logo. **§2, §3 und §10 unten sind durch diesen Block überholt** — maßgeblich sind die Tokens in `css/styles.css`.
+>
+> | Token | Hex | Rolle |
+> |---|---|---|
+> | `--color-bg` | `#F6F2EF` | Creme aus dem Banner — Basis |
+> | `--color-surface` / `-2` | `#FFFFFF` / `#EFEAE4` | Lesefläche, Formular / warme Zwischenfläche |
+> | `--color-text` | `#2E3641` | Navy der Logo-Schrift (11:1 auf Creme) |
+> | `--color-text-muted` | `#5A626D` | Sekundärtext (≥ 5.1:1) |
+> | `--color-accent` | `#C59C4A` | Logo-Gold — nur Flächen, Icon, Striche; **nie Text** (2.3:1) |
+> | `--color-accent-text` | `#7F5E20` | Gold für Links/Labels auf Hell (≥ 4.98:1) |
+> | `--color-invert-bg` | `#2E3641` | Basis-Tokens der dunklen Flächen (im Scope umdefiniert) |
+> | `.invert` + Footer | `#4A5044` | Oliv-Salbei aus den mittleren Bergketten; Gold für Nummern dort `#DDBB72` (4.5:1) |
+>
+> **Typo:** nur noch Montserrat (Variable, self-hosted). Headlines 700, Body 400, Labels 600 uppercase mit 0.16–0.2em Sperrung. Wortmarke: IMPACT 600 / ALYST 300, 0.2em.
+> **Icon:** exakter Vektor-Nachbau in `src/_includes/partials/marks.njk` und `assets/logo-icon.svg` (offener Ring, Schnittkanten parallel zum gefüllten Pfeil). **Kein Strich-Pfeil mehr** — der alte Nachbau las sich wie das ♂-Symbol.
+> **Eyebrow:** kurzer Gold-Strich statt `//` — der Strich unter dem Claim im Banner.
+> **Hero:** Banner-Komposition — Text links, großes Gold-Icon rechts, das in die Bergketten (`assets/mountains.svg`) ragt.
+
 ---
 
 ## 1. Visual Theme & Atmosphere

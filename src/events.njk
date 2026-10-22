@@ -15,6 +15,17 @@ permalink: "/events/"
 ---
 {% include "partials/page-head.njk" %}
 
+{% if not collections.eventsKommend.length %}
+<section class="section list-section" id="kommend">
+  <div class="container">
+    <span class="eyebrow">Lokale Meetups</span>
+    <h2 class="section__title">Das nächste Treffen ist in Planung.</h2>
+    <p class="page-head__lead">Werde Teil des Netzwerks — dann erfährst du den nächsten Termin als Erste:r.</p>
+    <a class="btn btn--primary" href="/#beitreten" style="margin-top:1.8rem">Teil des Netzwerks werden</a>
+  </div>
+</section>
+{% endif %}
+
 {% if collections.eventsKommend.length %}
 <section class="section list-section" id="kommend">
   <div class="container">

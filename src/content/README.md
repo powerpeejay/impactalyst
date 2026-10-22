@@ -23,7 +23,7 @@ Deshalb: Feldnamen nicht ändern, ohne `admin/config.yml` und die Templates mitz
 |---|---|---|
 | `pages/` | Einzelseiten mit redaktionellem Text | `/vision/`, `/netzwerk/` |
 | `events/` | Kommende und vergangene Meetups | `/events/<slug>/` |
-| `articles/` | Fachartikel | `/impulse/artikel/<slug>/` |
+| `articles/` | Impulsbeiträge | `/impulse/artikel/<slug>/` |
 | `resources/` | Ressourcen-Bibliothek (Links, PDFs, Methoden) | `/impulse/ressourcen/` |
 | `recaps/` | Event-Recaps | `/impulse/recaps/<slug>/` |
 | `team/` | Menschen hinter dem Netzwerk | `/netzwerk/` |

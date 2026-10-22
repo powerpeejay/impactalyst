@@ -62,7 +62,7 @@ Eine CSP dort würde den CMS-Login zerstören, ohne Besucher zu schützen —
 
 | Quelle | Zweck | Hinweis |
 |---|---|---|
-| Google Fonts (`fonts.gstatic.com`) | woff2 zur **Build-Zeit** geladen | Dateien liegen self-hosted in `/fonts/` (latin + latin-ext). Zur Laufzeit **kein** Request an Google. |
+| Fontsource (`@fontsource-variable/montserrat` 5.3.0, npm) | Montserrat Variable woff2, einmalig zur **Build-Zeit** geholt | Dateien liegen self-hosted in `/fonts/` (latin + latin-ext), SIL Open Font License 1.1. Zur Laufzeit **kein** Request an Dritte. |
 | Pexels (`pexels.com`) | Fotografie (falls in Phase 3 genutzt) via `node fetch-photos.mjs` | Bilder lokal in `assets/img/`. Aktuell **keine** Pexels-Fotos eingebunden — die Direction trägt typografisch. Bei Nutzung: Attribution hier + im Footer ergänzen. |
 | Gründerin-Foto (`brand_assets/Julia_Brauer.jpg`) | Portrait in der Gründerin-Sektion | **Client-supplied**, lokal self-hosted unter `assets/img/julia-brauer.jpg`. Kein Visitor-Request, keine Attribution nötig. |
 

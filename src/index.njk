@@ -11,16 +11,18 @@ schema: organization
 
 <!-- ============ Hero ============ -->
 <section class="hero">
-  <div class="hero__glow" aria-hidden="true"></div>
-  {{ marks.icon("hero__watermark", 3.4) }}
-  <div class="container hero__inner">
-    <span class="eyebrow">Führungskultur · radikal ehrlich</span>
-    <h1><span class="strike">Ego</span> <span class="light">ablegen.</span></h1>
-    <p class="hero__lead">Schluss mit dem Business-Theater. Impactalyst ist ein offenes Netzwerk für Leader in Hamburg, die echte Verantwortung tragen — und Kultur gemeinsam verändern wollen.</p>
-    <div class="hero__actions">
-      <a class="btn btn--primary" href="#beitreten">Teil des Netzwerks werden</a>
-      <a class="btn btn--ghost" href="#manifest">→ was uns antreibt</a>
+  <img class="hero__mountains" src="/assets/mountains.svg" alt="" width="1600" height="420" fetchpriority="high">
+  <div class="container hero__grid">
+    <div class="hero__inner">
+      <span class="eyebrow">{{ site.tagline }}</span>
+      <h1><span class="strike">Ego</span> <span class="light">ablegen.</span></h1>
+      <p class="hero__lead">Schluss mit dem Business-Theater. Impactalyst ist ein offenes Netzwerk für Leader in Hamburg, die echte Verantwortung tragen — und Kultur gemeinsam verändern wollen.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#beitreten">Teil des Netzwerks werden</a>
+        <a class="btn btn--ghost" href="#manifest">→ was uns antreibt</a>
+      </div>
     </div>
+    {{ marks.icon("hero__mark") }}
   </div>
 </section>
 
@@ -31,8 +33,8 @@ schema: organization
     <div class="manifest__grid" style="margin-top:2rem">
       <p class="manifest__lead">Mit welchem Leader teilst du deine größten strategischen Zweifel, wenn das Business-Theater nach oben und unten keine Risse zeigen darf?</p>
       <div class="manifest__body">
-        <p>Die meisten Netzwerke verkaufen Status. Wir nicht. Bei Impactalyst legen wir das Business-Ego ab, um die Führungskultur von morgen radikal ehrlich zu gestalten — branchenübergreifend, auf Augenhöhe, ohne Show.</p>
-        <p>Wir starten in unserem Heimathafen Hamburg ein offenes Netzwerk für alle, die echte Verantwortung übernehmen. Ohne künstliche Verknappung. Ohne exklusive Einzelplätze. Ohne das ewige Theater.</p>
+        <p>Ein Netzwerk ist keine Visitenkartensammlung. Und erst recht keine Selbstdarstellungs-Bühne. Echte Führung kann ein einsames Geschäft sein, wenn man sie alleine durchzieht — deshalb braucht es einen geschützten Raum zum Teilen, nicht zum Prahlen.</p>
+        <p>Impactalyst ist der Katalysator für die eigene Haltung, der Resonanzraum für strategische Zweifel und der Treibstoff für echten Kulturwandel. Branchenübergreifend, im Heimathafen Hamburg, für alle, die echte Verantwortung übernehmen. Ohne künstliche Verknappung. Ohne exklusive Einzelplätze. Ohne das ewige Theater.</p>
         <blockquote class="pullquote">Echte Haltung zeigen und Kultur kollektiv verändern.</blockquote>
       </div>
     </div>
@@ -50,7 +52,7 @@ schema: organization
     <div class="founder__body">
       <span class="eyebrow">Die Gründerin</span>
       <blockquote class="founder__quote">„Einmal mutig sein. Lange habe ich darüber nachgedacht, diesen Schritt zu gehen — jetzt eröffne ich mein eigenes Netzwerk."</blockquote>
-      <p class="founder__text">Impactalyst ist aus einer persönlichen Überzeugung entstanden: dass Führung ehrlicher geht. Julia bringt das Netzwerk in Hamburg an den Start — auf Augenhöhe, ohne Show.</p>
+      <p class="founder__text">Seit fast sechs Jahren Führungskraft, ausgebildeter systemischer Coach — und überzeugt davon, dass Leadership eine Superpower ist, die man erlernen kann. Julia bringt Impactalyst in Hamburg an den Start: auf Augenhöhe, ohne Show.</p>
       <p class="founder__meta">{{ site.founder.name }} · {{ site.founder.role }}<br><span>Im Hauptberuf Teamlead Marketing Services</span></p>
       <a class="btn btn--secondary founder__cta" href="{{ site.founder.linkedin }}" target="_blank" rel="noopener">Auf LinkedIn vernetzen →</a>
     </div>
@@ -58,34 +60,46 @@ schema: organization
 </section>
 
 <!-- ============ Invert: Haltung / Werte ============ -->
+{#
+  Die Werte pflegt das CMS an EINER Stelle: src/content/pages/vision.md.
+  Nunjucks-`set` verlässt eine for-Schleife nicht — deshalb wird hier direkt
+  in der Schleife gerendert.
+#}
+{% for vision in collections.editorialPages %}{% if vision.url == "/vision/" and vision.data.values %}
 <section class="section invert reveal" id="haltung">
   <div class="container">
-    <span class="eyebrow">Wofür wir stehen</span>
-    <h2>Vier Prinzipien statt zwölf Floskeln.</h2>
+    <span class="eyebrow">{{ vision.data.valuesEyebrow }}</span>
+    <h2>{{ vision.data.valuesTitle }}</h2>
     <ul class="values">
+      {% for v in vision.data.values %}
       <li>
-        <span class="values__num">01</span>
-        <h3 class="values__title">Offenheit</h3>
-        <p class="values__desc">Branchenübergreifend und ohne geschlossene Türen. Wer Verantwortung trägt, ist willkommen — nicht, wer den richtigen Status mitbringt.</p>
+        <span class="values__num">{{ "0" + loop.index if loop.index < 10 else loop.index }}</span>
+        <h3 class="values__title">{{ v.titel }}</h3>
+        <p class="values__desc">{{ v.text }}</p>
       </li>
-      <li>
-        <span class="values__num">02</span>
-        <h3 class="values__title">Kollektives Lernen</h3>
-        <p class="values__desc">Wir lernen voneinander und miteinander. Die besten Antworten entstehen, wenn niemand mehr so tun muss, als hätte er sie längst.</p>
-      </li>
-      <li>
-        <span class="values__num">03</span>
-        <h3 class="values__title">Echte Verantwortung</h3>
-        <p class="values__desc">Haltung statt Hochglanz. Wir reden über die schweren Entscheidungen — die, über die anderswo geschwiegen wird.</p>
-      </li>
-      <li>
-        <span class="values__num">04</span>
-        <h3 class="values__title">Kulturwandel</h3>
-        <p class="values__desc">Führungskultur verändert sich nicht durch Vorträge, sondern durch Menschen, die anfangen. Gemeinsam, in Hamburg, mit Wirkung darüber hinaus.</p>
-      </li>
+      {% endfor %}
     </ul>
   </div>
 </section>
+{% endif %}{% endfor %}
+
+<!-- ============ Neueste Impulse ============ -->
+{% if collections.fachartikel.length %}
+<section class="section list-section reveal" id="impulse">
+  <div class="container">
+    <div class="list-section__head">
+      <div>
+        <span class="eyebrow">Aus dem Führungsalltag</span>
+        <h2 class="section__title">Radikal ehrliche Einblicke</h2>
+      </div>
+      <a class="btn btn--ghost" href="/impulse/artikel/">→ alle Impulsbeiträge</a>
+    </div>
+    <ul class="entry-list">
+      {% for entry in collections.fachartikel.slice(0, 3) %}{% include "partials/entry-row.njk" %}{% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
 
 <!-- ============ Join / Form ============ -->
 <section class="section join reveal" id="beitreten">
@@ -94,8 +108,8 @@ schema: organization
       <div>
         <span class="eyebrow">Beitreten</span>
         <h2>Teil des Netzwerks werden</h2>
-        <p class="join__intro">Bist du bereit, das Business-Ego abzulegen und Führungskultur radikal ehrlich zu gestalten? Schreib uns kurz, wer du bist — wir melden uns persönlich.</p>
-        <p class="join__note-open">Kein Auswahlverfahren, keine Warteliste-Inszenierung. Offen für alle, die echte Verantwortung tragen.</p>
+        <p class="join__intro">Bist du bereit, die Business-Maske abzulegen und Führungskultur radikal ehrlich zu gestalten? Schreib uns kurz, wer du bist — wir melden uns persönlich.</p>
+        <p class="join__note-open">Ein Unternehmen, viele Leader? Bring sie alle mit. Kein Auswahlverfahren, keine Warteliste-Inszenierung.</p>
       </div>
 
       <form class="form" id="join-form" action="{{ site.formspree }}" method="POST">

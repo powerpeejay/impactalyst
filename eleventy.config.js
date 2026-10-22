@@ -12,6 +12,30 @@
 
 import { HtmlBasePlugin } from '@11ty/eleventy';
 import eleventyNavigationPlugin from '@11ty/eleventy-navigation';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+// Breite/Höhe aus dem Datei-Header lesen (JPEG: SOF-Marker, PNG: IHDR).
+// Ohne Bild-Bibliothek — Sharp & Co. wären eine native Abhängigkeit nur dafür.
+function bildMasse(webPfad) {
+  try {
+    const buf = readFileSync(join(process.cwd(), String(webPfad).replace(/^\//, '')));
+    if (buf.readUInt32BE(0) === 0x89504e47) {
+      return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+    }
+    let i = 2;
+    while (i < buf.length) {
+      if (buf[i] !== 0xff) { i++; continue; }
+      const marker = buf[i + 1];
+      // SOF0–SOF15 ohne DHT (C4), JPG (C8), DAC (CC)
+      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+        return { height: buf.readUInt16BE(i + 5), width: buf.readUInt16BE(i + 7) };
+      }
+      i += 2 + buf.readUInt16BE(i + 2);
+    }
+  } catch { /* Datei fehlt — Template rendert dann ohne Maße */ }
+  return null;
+}
 
 const PATH_PREFIX = process.env.ELEVENTY_PATH_PREFIX || '/';
 
@@ -52,6 +76,9 @@ export default function (eleventyConfig) {
   /* ---- Filter ----------------------------------------------------------- */
 
   // "14. Juni 2026"
+  // Bildmaße für width/height-Attribute (kein Layout-Sprung beim Laden).
+  eleventyConfig.addFilter('bildMasse', bildMasse);
+
   eleventyConfig.addFilter('dateDe', (value) =>
     new Intl.DateTimeFormat('de-DE', {
       day: 'numeric',

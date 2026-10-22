@@ -72,10 +72,10 @@ collections:
       - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
       - { name: body, label: "Beschreibung", widget: markdown, required: false }
 
-  # ---- Fachartikel --------------------------------------------------------
+  # ---- Impulsbeiträge --------------------------------------------------------
   - name: articles
-    label: "Fachartikel"
-    label_singular: "Fachartikel"
+    label: "Impulsbeiträge"
+    label_singular: "Impulsbeitrag"
     folder: "src/content/articles"
     create: true
     slug: "{{slug}}"
@@ -97,6 +97,8 @@ collections:
         widget: list
         required: false
         hint: "Schlagworte. Absichtlich nicht 'tags' genannt — dieses Feld gehört Eleventy."
+      - { name: bild, label: "Bild", widget: image, required: false, hint: "Erscheint groß über dem Text und als Vorschaubild beim Teilen. Querformat wirkt am besten." }
+      - { name: bild_alt, label: "Bildbeschreibung", widget: string, required: false, hint: "Was ist auf dem Bild zu sehen? Für Screenreader und Google — ein Satz genügt." }
       - { name: draft, label: "Entwurf (nicht veröffentlichen)", widget: boolean, default: false }
       - { name: body, label: "Text", widget: markdown }
 

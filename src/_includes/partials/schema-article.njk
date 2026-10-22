@@ -7,7 +7,7 @@
   "datePublished": {{ (date | isoDate) | dump | safe }},
   "inLanguage": "de-DE",
   "mainEntityOfPage": {{ (site.origin + (page.url | url)) | dump | safe }},
-  "image": {{ (site.origin + (site.ogImage | url)) | dump | safe }},
+  "image": {{ (site.origin + ((bild if bild else site.ogImage) | url)) | dump | safe }},
   {% if autor %}"author": { "@type": "Person", "name": {{ autor | dump | safe }} },{% endif %}
   "publisher": {
     "@type": "Organization",
