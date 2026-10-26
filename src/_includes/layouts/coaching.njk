@@ -1,0 +1,103 @@
+---
+layout: layouts/base.njk
+headerSolid: true
+---
+{#
+  Coaching-Angebot von Julia. Text und Zahl freier Plätze kommen aus
+  src/content/pages/coaching.md (im CMS: Feste Seiten → Coaching).
+  Echte Kapazität, keine künstliche Verknappung: kein Countdown, kein
+  "nur noch heute" — nur die ehrliche Zahl. Bei 0 bleibt das Formular offen,
+  dann für Interesse an einer späteren Runde.
+#}
+{% include "partials/page-head.njk" %}
+
+<section class="section prose-section">
+  <div class="container">
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+  </div>
+</section>
+
+{% if workbooks and workbooks.length %}
+<section class="section list-section list-section--muted" id="workbooks">
+  <div class="container">
+    <span class="eyebrow">Workbooks</span>
+    <h2 class="section__title">{{ workbooksTitle | default("Workbooks") }}</h2>
+    {% if workbooksLead %}<p class="workbooks__lead">{{ workbooksLead }}</p>{% endif %}
+    <div class="workbooks">
+      {% for gruppe in ["Führungsanfänger", "Senior Leadership"] %}
+      <div class="workbooks__gruppe">
+        <h3 class="workbooks__titel">{{ "Für Führungsanfänger" if gruppe == "Führungsanfänger" else "Für Senior Leader" }}</h3>
+        <ul class="resource-list">
+          {% for wb in workbooks %}{% if wb.zielgruppe == gruppe %}
+          <li class="resource">
+            <a class="resource__link" href="{{ wb.datei }}" download>
+              <span class="resource__type">Workbook · PDF</span>
+              <span class="resource__title">{{ wb.titel }}</span>
+              {% if wb.text %}<span class="resource__teaser">{{ wb.text }}</span>{% endif %}
+              <span class="resource__source">↓ Herunterladen</span>
+            </a>
+          </li>
+          {% endif %}{% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section event-signup" id="anfrage">
+  <div class="container">
+    <div class="event-signup__grid">
+      <div>
+        <span class="eyebrow">Anfrage</span>
+        {% if plaetze_frei > 0 %}
+        <h2 class="section__title">Einen der Plätze anfragen.</h2>
+        <p class="event-signup__note">Aktuell {{ "ist noch ein Platz" if plaetze_frei == 1 else ("sind " + plaetze_frei + " Plätze") }} frei. Schreib mir kurz, wer du bist und worum es dir geht — ich melde mich persönlich bei dir.</p>
+        {% else %}
+        <h2 class="section__title">Gerade sind beide Plätze vergeben.</h2>
+        <p class="event-signup__note">Schreib mir trotzdem, wenn dich das Thema interessiert — ich melde mich, sobald wieder ein Platz frei wird.</p>
+        {% endif %}
+        <p class="event-signup__note">Bitte schreib in die Nachricht nur, was du für eine erste Einordnung teilen magst. Alles Weitere besprechen wir persönlich.</p>
+      </div>
+
+      <form class="form" data-form="coaching" action="{{ site.formspree }}" method="POST">
+        <input type="hidden" name="_subject" value="Coaching-Anfrage – Impactalyst">
+        <input type="hidden" name="_language" value="de">
+        <input type="hidden" name="anliegen" value="Kostenloser Coaching-Platz">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+
+        <div class="form__row form__row--split">
+          <div>
+            <label for="co-name">Name</label>
+            <input type="text" id="co-name" name="name" placeholder="Vor- und Nachname" autocomplete="name" required>
+          </div>
+          <div>
+            <label for="co-email">E-Mail</label>
+            <input type="email" id="co-email" name="email" placeholder="du@firma.de" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div class="form__row">
+          <label for="co-rolle">Deine Rolle <span class="label-optional">(optional)</span></label>
+          <input type="text" id="co-rolle" name="rolle" placeholder="z. B. Teamlead, Abteilungsleitung" autocomplete="organization-title">
+        </div>
+
+        <div class="form__row">
+          <label for="co-message">Worum geht es dir?</label>
+          <textarea id="co-message" name="message" placeholder="Ein, zwei Sätze zu deinem Thema genügen." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--primary form__submit">Coaching-Platz anfragen</button>
+
+        <p class="form__note">Deine Angaben nutze ich ausschließlich, um deine Anfrage zu beantworten, und behandle sie vertraulich. Mehr in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
+        <p class="form__success" role="status">Danke — deine Anfrage ist angekommen. Ich melde mich persönlich bei dir.</p>
+        <p class="form__error" role="alert">Etwas ist schiefgelaufen. Bitte versuch es erneut oder schreib an <a href="mailto:{{ site.email }}" style="color:inherit">{{ site.email }}</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% include "partials/join-band.njk" %}

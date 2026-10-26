@@ -202,6 +202,35 @@ collections:
               - { name: text, label: "Text", widget: text }
           - { name: body, label: "Fließtext", widget: markdown }
 
+      - name: coaching
+        label: "Coaching"
+        file: "src/content/pages/coaching.md"
+        fields:
+          - { name: title, label: "Seitentitel", widget: string }
+          - { name: eyebrow, label: "Eyebrow", widget: string }
+          - { name: headline, label: "Überschrift", widget: string }
+          - { name: lead, label: "Vorspann", widget: text }
+          - { name: description, label: "Meta-Description (SEO)", widget: text }
+          - name: plaetze_frei
+            label: "Freie Plätze"
+            widget: number
+            value_type: int
+            min: 0
+            default: 2
+            hint: "Bei 0 bleibt das Formular offen — dann für Interesse an einer späteren Runde."
+          - { name: workbooksTitle, label: "Workbooks — Überschrift", widget: string, required: false }
+          - { name: workbooksLead, label: "Workbooks — Einleitung", widget: text, required: false }
+          - name: workbooks
+            label: "Workbooks"
+            widget: list
+            required: false
+            fields:
+              - { name: titel, label: "Titel", widget: string }
+              - { name: zielgruppe, label: "Zielgruppe", widget: select, options: ["Führungsanfänger", "Senior Leadership"] }
+              - { name: text, label: "Kurzbeschreibung", widget: text }
+              - { name: datei, label: "PDF-Datei", widget: file, media_folder: "/assets/downloads", public_folder: "/assets/downloads" }
+          - { name: body, label: "Fließtext", widget: markdown }
+
       - name: netzwerk
         label: "Netzwerk & Team"
         file: "src/content/pages/netzwerk.md"

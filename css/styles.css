@@ -80,7 +80,7 @@ img{max-width:100%;height:auto;display:block}
 a{color:inherit;text-decoration:none}
 /* Montserrat läuft breit — lange deutsche Komposita dürfen auf schmalen Screens trennen
    (hyphens nur ≤ 480px, siehe Responsive; auf Desktop sähe "Netz-werks" falsch aus) */
-h1,h2,h3{overflow-wrap:break-word}
+h1,h2,h3{overflow-wrap:break-word;hyphenate-limit-chars:10 4 4}
 ::selection{background:var(--color-accent);color:var(--color-on-accent)}
 
 /* ---- layout helpers ---- */
@@ -220,7 +220,7 @@ h1,h2,h3{overflow-wrap:break-word}
   font-size:1.05rem;color:var(--color-text);line-height:1.5}
 .founder__meta span{display:inline-block;font-family:var(--font-label);font-weight:500;
   font-size:.78rem;letter-spacing:.04em;color:var(--color-text-muted);margin-top:.25rem}
-.founder__cta{margin-top:1.8rem}
+.founder__actions{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.8rem;margin-top:1.8rem}
 
 /* ---- dunkle Flächen (Werte-Block + Footer) — Oliv-Salbei, abgedunkelt aus den
    mittleren Bergketten des Banners (#767772). Navy bleibt Schriftfarbe. ---- */
@@ -439,6 +439,15 @@ h1,h2,h3{overflow-wrap:break-word}
 .resource__link:hover .resource__title,
 .resource__link:focus-visible .resource__title{color:var(--color-accent-text)}
 
+/* ---- Workbooks (Coaching-Seite) ---- */
+.workbooks__lead{margin-top:1rem;color:var(--color-text-muted);max-width:56ch;line-height:1.7}
+.workbooks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(2rem,5vw,4rem);margin-top:clamp(2rem,4vw,3rem)}
+.workbooks__titel{font-family:var(--font-display);font-weight:700;font-size:1.15rem;
+  letter-spacing:-.01em}
+.workbooks .resource-list{margin-top:1rem}
+@media (max-width:768px){.workbooks{grid-template-columns:1fr}}
+
 /* ---- Team ---- */
 .team{background:var(--color-surface);border-bottom:1px solid var(--color-border);
   position:relative;z-index:2}
@@ -555,6 +564,20 @@ h1,h2,h3{overflow-wrap:break-word}
 /* ==========================================================================
    Responsive
    ========================================================================== */
+/* Fünf Menüpunkte + CTA passen erst ab ~1100px neben die Wortmarke —
+   darunter übernimmt das Hamburger-Menü (auch auf Tablet/Laptop). */
+@media (max-width:1100px){
+  .nav__links{
+    position:fixed;inset:64px 0 auto 0;flex-direction:column;align-items:flex-start;
+    gap:0;background:var(--color-surface);border-bottom:1px solid var(--color-border);
+    padding:.5rem 0;transform:translateY(-130%);transition:transform .3s ease;
+    box-shadow:var(--shadow-float);
+  }
+  .nav__links.open{transform:translateY(0)}
+  .nav__links a{width:100%;padding:1rem clamp(1.25rem,5vw,4rem);font-size:1rem}
+  .nav__links .nav__cta{margin:.8rem clamp(1.25rem,5vw,4rem) 1rem;width:calc(100% - 2 * clamp(1.25rem,5vw,4rem))}
+  .nav__toggle{display:inline-flex}
+}
 @media (max-width:900px){
   /* Lange Komposita ("Visitenkartensammlung") passen ab Tablet nicht mehr in eine Zeile */
   .page-head h1,.article-head h1{hyphens:auto}
@@ -581,16 +604,6 @@ h1,h2,h3{overflow-wrap:break-word}
   .event-signup__grid{grid-template-columns:1fr;gap:2.5rem}
   .join-band__inner{align-items:flex-start}
   .join-band .btn{width:100%}
-  .nav__links{
-    position:fixed;inset:64px 0 auto 0;flex-direction:column;align-items:flex-start;
-    gap:0;background:var(--color-surface);border-bottom:1px solid var(--color-border);
-    padding:.5rem 0;transform:translateY(-130%);transition:transform .3s ease;
-    box-shadow:var(--shadow-float);
-  }
-  .nav__links.open{transform:translateY(0)}
-  .nav__links a{width:100%;padding:1rem clamp(1.25rem,5vw,4rem);font-size:1rem}
-  .nav__links .nav__cta{margin:.8rem clamp(1.25rem,5vw,4rem) 1rem;width:calc(100% - 2 * clamp(1.25rem,5vw,4rem))}
-  .nav__toggle{display:inline-flex}
   .values{grid-template-columns:1fr}
   .values li,.values li:nth-child(even){padding:1.6rem 0;border-left:0}
   .form__row--split{grid-template-columns:1fr}
