@@ -1,0 +1,49 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+{#-
+  RSS-Feed der Impulsbeiträge. Gedacht für Automatisierungen (Make, n8n,
+  Zapier), die neue Beiträge auf LinkedIn teilen — siehe
+  docs/linkedin-automatisierung.md. Neueste zuerst.
+    description      = Teaser (kurz, ideal als LinkedIn-Text)
+    content:encoded  = voller Beitragstext als HTML
+    enclosure/media  = Beitragsbild, falls vorhanden
+-#}
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>{{ site.name }} — Impulsbeiträge</title>
+    <link>{{ site.origin }}/impulse/artikel/</link>
+    <atom:link href="{{ site.origin }}/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>{{ site.tagline }} {{ site.claim }}</description>
+    <language>de-DE</language>
+    {%- if collections.fachartikel.length %}
+    <lastBuildDate>{{ collections.fachartikel[0].data.date | rfc822 }}</lastBuildDate>
+    {%- endif %}
+    {%- for entry in collections.fachartikel %}
+    {%- set url = site.origin + (entry.url | url) %}
+    <item>
+      <title>{{ entry.data.title }}</title>
+      <link>{{ url }}</link>
+      <guid isPermaLink="true">{{ url }}</guid>
+      <pubDate>{{ entry.data.date | rfc822 }}</pubDate>
+      {%- if entry.data.autor %}
+      <dc:creator>{{ entry.data.autor }}</dc:creator>
+      {%- endif %}
+      {%- for thema in entry.data.themen %}
+      <category>{{ thema }}</category>
+      {%- endfor %}
+      <description>{{ entry.data.teaser }}</description>
+      <content:encoded><![CDATA[{{ entry.content | absoluteLinks(site.origin) | safe }}]]></content:encoded>
+      {%- if entry.data.bild %}
+      {%- set masse = entry.data.bild | bildMasse %}
+      <enclosure url="{{ site.origin }}{{ entry.data.bild | url }}" length="{{ entry.data.bild | dateiGroesse }}" type="{{ 'image/png' if entry.data.bild.endsWith('.png') else 'image/jpeg' }}"/>
+      <media:content url="{{ site.origin }}{{ entry.data.bild | url }}" medium="image"{% if masse %} width="{{ masse.width }}" height="{{ masse.height }}"{% endif %}>
+        {%- if entry.data.bild_alt %}<media:description>{{ entry.data.bild_alt }}</media:description>{% endif -%}
+      </media:content>
+      {%- endif %}
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

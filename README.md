@@ -94,6 +94,12 @@ beschreiben dieselben Felder und müssen zusammen geändert werden.
 `draft: true` in einer Datei ⇒ weder Seite noch Listeneintrag.
 Zur Vorschau: `BUILD_DRAFTS=1 npm run dev`.
 
+### RSS-Feed & LinkedIn
+
+`/feed.xml` listet alle Impulsbeiträge (Teaser, voller Text, Bild). Damit lassen
+sich neue Beiträge automatisch auf LinkedIn teilen — Einrichtung mit Make oder
+n8n: [`docs/linkedin-automatisierung.md`](docs/linkedin-automatisierung.md).
+
 ### Sveltia CMS
 
 ```bash

@@ -12,7 +12,7 @@
 
 import { HtmlBasePlugin } from '@11ty/eleventy';
 import eleventyNavigationPlugin from '@11ty/eleventy-navigation';
-import { readFileSync } from 'node:fs';
+import { readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 // Breite/Höhe aus dem Datei-Header lesen (JPEG: SOF-Marker, PNG: IHDR).
@@ -124,6 +124,25 @@ export default function (eleventyConfig) {
   );
 
   // Absolute URL für canonical / og:image / JSON-LD
+  // ---- RSS-Feed (/feed.xml) -------------------------------------------
+  // Datum im RFC-822-Format, wie RSS 2.0 es verlangt.
+  eleventyConfig.addFilter('rfc822', (value) => new Date(value).toUTCString());
+
+  // Wurzel-relative Links und Bilder im Beitragstext absolut machen —
+  // ein Feed-Leser (Make, n8n, Feedly) kennt die Domain sonst nicht.
+  eleventyConfig.addFilter('absoluteLinks', (html, origin) =>
+    String(html || '').replace(/(href|src)="\/(?!\/)/g, `$1="${origin}/`)
+  );
+
+  // Dateigröße in Bytes (RSS-<enclosure> verlangt sie).
+  eleventyConfig.addFilter('dateiGroesse', (webPfad) => {
+    try {
+      return statSync(join(process.cwd(), String(webPfad).replace(/^\//, ''))).size;
+    } catch {
+      return 0;
+    }
+  });
+
   eleventyConfig.addFilter('absoluteUrl', function (path, base) {
     return new URL(path, base).href;
   });

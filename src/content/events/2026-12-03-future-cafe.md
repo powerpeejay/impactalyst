@@ -1,10 +1,11 @@
 ---
-title: "Runde 4: Future Café — Leadership 2030"
+title: "Future Café — Leadership 2030"
 date: 2026-12-03
-ort: "Hamburg"
+zeit: "ab 18:30 Uhr"
+ort: "Café Kraweel, Paul-Roosen-Straße 6, Hamburg-St. Pauli"
 teaser: "Wie wollen wir morgen führen? In kleinen Gesprächsrunden schauen wir gemeinsam nach vorne: Was braucht Leadership — und was dürfen wir loslassen?"
 anmeldung_offen: true
-bild: "/assets/img/uploads/event-runde-4-future-cafe.jpg"
+bild: "/assets/img/uploads/event-future-cafe.jpg"
 bild_alt: "Frau mit einem leuchtenden, digitalen Tablet vor einem Fenster mit Blick auf die Elbphilharmonie"
 ---
 

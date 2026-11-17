@@ -39,7 +39,7 @@ Meine These für das Skill-Set der Führungskraft 2030:
 
 Genau über diese Zukunftsbilder wollen wir nicht nur theoretisieren, sondern sie gemeinsam gestalten.
 
-Wenn du Lust auf echten Austausch ohne Bullshit-Bingo hast: Komm gern zu unserem [nächsten IMPACTALYST-Treffen am 03.12.](/events/runde-4-future-cafe/) vorbei.
+Wenn du Lust auf echten Austausch ohne Bullshit-Bingo hast: Komm gern zu unserem [nächsten IMPACTALYST-Treffen am 03.12.](/events/future-cafe/) vorbei.
 
 Lass uns darüber sprechen, wie deine Vision für die Führung der Zukunft aussieht! 🚀
 

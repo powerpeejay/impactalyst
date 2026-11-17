@@ -6,6 +6,13 @@
   "framework": null,
   "cleanUrls": true,
   "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/events/runde-4-future-cafe/",
+      "destination": "/events/future-cafe/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/auth",
