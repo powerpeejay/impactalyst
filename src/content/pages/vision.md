@@ -8,7 +8,7 @@ lead: "Mit welchem Leader teilst du deine größten strategischen Zweifel, wenn 
 description: "Das Manifest von Impactalyst: Business-Maske ablegen, Führungskultur radikal ehrlich gestalten. Fünf Werte für ein offenes Leadership-Netzwerk in Hamburg."
 ogTitle: "Impactalyst — Vision & Manifest"
 valuesEyebrow: "Wofür wir stehen"
-valuesTitle: "Fünf Werte statt zwölf Floskeln."
+valuesTitle: "Fünf Werte. Keine Floskeln."
 values:
   - titel: "Führung ist eine Haltung, kein Titel"
     text: "Wir laden alle ein, die Verantwortung übernehmen — vom Teamlead im Startup bis zur Abteilungsleiterin im Konzern, vom Projektleiter bis zur NGO-Gründerin."

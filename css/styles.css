@@ -19,6 +19,9 @@
      und Hover-Zustände gibt es den dunklen Gold-Ton (≥ 4.98:1 auf allen hellen Flächen). */
   --color-accent-text:#7F5E20;
   --color-accent-text-hover:#5F4614;
+  /* Gold für GROSSE Schrift (≥ 24px): 3.2:1 auf Creme — reicht laut WCAG für
+     große Texte, wirkt aber noch golden statt bräunlich. */
+  --color-accent-large:#A88138;
   --color-on-accent:#2E3641;
   --color-focus:#2E3641;
   --shadow-float:0 18px 40px -18px rgba(46,54,65,.28);
@@ -177,6 +180,11 @@ h1,h2,h3{overflow-wrap:break-word;hyphenate-limit-chars:10 4 4}
   margin-top:1.6rem;
 }
 .hero h1 .light{color:var(--color-text)}
+/* Was man fürs Ego-Ablegen bekommt — leichter gesetzt, wie "ALYST" in der Wortmarke;
+   "Impact" kräftig, wie "IMPACT". Eigene Zeile, etwas kleiner. */
+.hero__gewinn{display:block;margin-top:.2em;font-size:.5em;font-weight:300;
+  letter-spacing:-.01em;color:var(--color-text)}
+.hero__gewinn b{font-weight:400;color:var(--color-accent-large)}
 .strike{position:relative;display:inline-block;color:var(--color-text)}
 .strike::after{
   content:"";position:absolute;left:-4%;right:-4%;top:52%;height:.075em;
