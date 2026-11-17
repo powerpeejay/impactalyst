@@ -26,7 +26,7 @@ async function routen(page) {
   const xml = await res.text();
   const pfade = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
   // Rechtstexte stehen wegen noindex nicht in der Sitemap, gehören aber geprüft.
-  return [...new Set([...pfade, '/impactalyst/impressum/', '/impactalyst/datenschutz/'])].sort();
+  return [...new Set([...pfade, '/impressum/', '/datenschutz/'])].sort();
 }
 
 const browser = await chromium.launch();
